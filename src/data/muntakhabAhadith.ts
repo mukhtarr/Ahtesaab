@@ -21,6 +21,79 @@ export const MUNTAKHAB_CHAPTERS = [
   "Tark-e-La-Ya'ni",
 ] as const;
 
+export interface HadithChapterMeta {
+  chapter: Exclude<(typeof MUNTAKHAB_CHAPTERS)[number], 'All Chapters'>;
+  urduName: string;
+  slug: string;
+  expectedCount: number;
+}
+
+export const HADITH_CHAPTER_META: HadithChapterMeta[] = [
+  { chapter: 'Kalimah Tayyibah', urduName: 'کلمہ طیبہ', slug: 'kalimah-tayyibah', expectedCount: 500 },
+  { chapter: 'Salaah', urduName: 'نماز', slug: 'salaah', expectedCount: 500 },
+  { chapter: 'Ilm & Zikr', urduName: 'علم و ذکر', slug: 'ilm-zikr', expectedCount: 500 },
+  { chapter: 'Ikram-ul-Muslim', urduName: 'اکرامِ مسلم', slug: 'ikram-ul-muslim', expectedCount: 500 },
+  { chapter: 'Ikhlas-e-Niyyat', urduName: 'اخلاصِ نیت', slug: 'ikhlas-e-niyyat', expectedCount: 500 },
+  { chapter: "Da'wat & Tabligh", urduName: 'دعوت و تبلیغ', slug: 'dawat-tabligh', expectedCount: 500 },
+  { chapter: "Tark-e-La-Ya'ni", urduName: 'ترکِ لایعنی', slug: 'tark-e-la-yani', expectedCount: 500 },
+];
+
+export const TOTAL_MUNTAKHAB_COUNT = HADITH_CHAPTER_META.reduce(
+  (sum, item) => sum + item.expectedCount,
+  0,
+);
+
+const chapterCache = new Map<string, MuntakhabHadith[]>();
+const inflightRequests = new Map<string, Promise<MuntakhabHadith[]>>();
+
+export async function fetchChapterHadiths(chapter: string): Promise<MuntakhabHadith[]> {
+  if (chapter === 'All Chapters') {
+    return fetchAllHadiths();
+  }
+
+  const cached = chapterCache.get(chapter);
+  if (cached) {
+    return cached;
+  }
+
+  const inflight = inflightRequests.get(chapter);
+  if (inflight) {
+    return inflight;
+  }
+
+  const meta = HADITH_CHAPTER_META.find((m) => m.chapter === chapter);
+  if (!meta) {
+    return MUNTAKHAB_AHADITH.filter((h) => h.chapter === chapter);
+  }
+
+  const req = fetch(`/data/hadith/${meta.slug}.json`)
+    .then(async (res) => {
+      if (!res.ok) {
+        throw new Error(`HTTP ${res.status}`);
+      }
+      const data = (await res.json()) as MuntakhabHadith[];
+      if (Array.isArray(data) && data.length > 0) {
+        chapterCache.set(chapter, data);
+        return data;
+      }
+      throw new Error('Empty chapter dataset');
+    })
+    .catch(() => MUNTAKHAB_AHADITH.filter((h) => h.chapter === chapter))
+    .finally(() => {
+      inflightRequests.delete(chapter);
+    });
+
+  inflightRequests.set(chapter, req);
+  return req;
+}
+
+export async function fetchAllHadiths(): Promise<MuntakhabHadith[]> {
+  const results = await Promise.all(
+    HADITH_CHAPTER_META.map((meta) => fetchChapterHadiths(meta.chapter)),
+  );
+  return results.flat();
+}
+
 export const MUNTAKHAB_AHADITH: MuntakhabHadith[] = [
   // 1. Kalimah Tayyibah
   {

@@ -99,8 +99,8 @@ export function WeeklyTrendsChart({
         </div>
 
         <div className="flex items-center gap-3 text-[11px] font-medium pt-1 shrink-0">
-          <span className="flex items-center gap-1.5 text-[#0D5C46] dark:text-[#34D399]">
-            <span className="w-3 h-0.5 bg-[#0D5C46] dark:bg-[#34D399] rounded-full" />
+          <span className="flex items-center gap-1.5 text-brand dark:text-brand-dark">
+            <span className="w-3 h-0.5 bg-brand dark:bg-brand-dark rounded-full" />
             <span>Prayers</span>
           </span>
           <span className="flex items-center gap-1.5 text-[#B4833E] dark:text-[#D4A65A]">
@@ -143,7 +143,7 @@ export function WeeklyTrendsChart({
                     <p className="font-semibold text-[#141A17] dark:text-[#F3F4F1] tabular-nums">
                       {pt.date} ({pt.shortLabel})
                     </p>
-                    <p className="text-[#0D5C46] dark:text-[#34D399] tabular-nums">
+                    <p className="text-brand dark:text-brand-dark tabular-nums">
                       Prayer Attendance: {pt.prayerRate}% ({pt.farzCount}/5 Farz)
                     </p>
                     <p className="text-[#B4833E] dark:text-[#D4A65A] tabular-nums">
@@ -157,10 +157,10 @@ export function WeeklyTrendsChart({
               type="monotone"
               dataKey="prayerRate"
               name="Prayer Attendance"
-              stroke="#0D5C46"
+              stroke="var(--theme-primary)"
               strokeWidth={2.5}
-              dot={{ r: 3.5, fill: '#0D5C46', strokeWidth: 0 }}
-              activeDot={{ r: 5, fill: '#0D5C46', stroke: '#FFFFFF', strokeWidth: 2 }}
+              dot={{ r: 3.5, fill: 'var(--theme-primary)', strokeWidth: 0 }}
+              activeDot={{ r: 5, fill: 'var(--theme-primary)', stroke: '#FFFFFF', strokeWidth: 2 }}
             />
             <Line
               type="monotone"

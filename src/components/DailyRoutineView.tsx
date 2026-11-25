@@ -85,19 +85,19 @@ function getTimeOfDayBanner(): { label: string; gradient: string } {
   if (hour >= 4 && hour < 8) {
     return {
       label: 'Fajr Dawn · Blessed Start',
-      gradient: 'from-[#0D5C46] via-[#0F766E] to-[#D97706]',
+      gradient: 'from-brand via-brand-to to-[#D97706]',
     };
   }
   if (hour >= 8 && hour < 15) {
     return {
       label: 'Daylight · Stay Consistent',
-      gradient: 'from-[#0D5C46] via-[#0284C7] to-[#0F766E]',
+      gradient: 'from-brand via-[#0284C7] to-brand-to',
     };
   }
   if (hour >= 15 && hour < 18) {
     return {
       label: 'Asr Time · Evening Azkaar Near',
-      gradient: 'from-[#B4833E] via-[#D97706] to-[#0D5C46]',
+      gradient: 'from-[#B4833E] via-[#D97706] to-brand',
     };
   }
   if (hour >= 18 && hour < 20) {
@@ -108,7 +108,7 @@ function getTimeOfDayBanner(): { label: string; gradient: string } {
   }
   return {
     label: 'Isha & Night · Honest Muhasabah',
-    gradient: 'from-[#1E293B] via-[#312E81] to-[#0D5C46]',
+    gradient: 'from-[#1E293B] via-[#312E81] to-brand',
   };
 }
 
@@ -234,7 +234,7 @@ export function DailyRoutineView({
                 }}
                 className={`min-h-[54px] rounded-2xl flex flex-col items-center justify-center gap-0.5 transition-colors cursor-pointer tabular-nums ${
                   active
-                    ? 'bg-gradient-to-b from-[#0D5C46] to-[#0F766E] text-white shadow-sm'
+                    ? 'bg-gradient-to-b from-brand to-brand-to text-white shadow-sm'
                     : 'bg-[#F8F7F4] dark:bg-[#0D1714] text-[#4B5550] dark:text-[#9AA8A1]'
                 }`}
               >
@@ -264,7 +264,7 @@ export function DailyRoutineView({
               Tap bell to hear loud Azaan
             </p>
           </div>
-          <span className="text-xs font-semibold text-[#0D5C46] dark:text-[#34D399] tabular-nums">
+          <span className="text-xs font-semibold text-brand dark:text-brand-dark tabular-nums">
             {farzOfferedCount} / 5
           </span>
         </div>
@@ -283,7 +283,7 @@ export function DailyRoutineView({
                         onTestAzaan(prayer.label);
                       }}
                       aria-label={`Play Azaan for ${prayer.label}`}
-                      className="min-h-[44px] min-w-[44px] rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] text-[#0D5C46] dark:text-[#34D399] flex items-center justify-center cursor-pointer active:scale-95"
+                      className="min-h-[44px] min-w-[44px] rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] text-brand dark:text-brand-dark flex items-center justify-center cursor-pointer active:scale-95"
                     >
                       <BellRing className="w-4 h-4" />
                     </button>
@@ -310,7 +310,7 @@ export function DailyRoutineView({
                         ? 'bg-red-600 text-white shadow-sm'
                         : opt.value === 'qaza'
                           ? 'bg-[#B4833E] text-white shadow-sm'
-                          : 'bg-[#0D5C46] text-white shadow-sm';
+                          : 'bg-brand text-white shadow-sm';
                     return (
                       <button
                         key={opt.value}
@@ -355,7 +355,7 @@ export function DailyRoutineView({
                 onClick={() => updateField(nafil.key, !checked)}
                 className={`min-h-[68px] p-3.5 rounded-2xl border text-left flex items-center justify-between gap-2 transition-all cursor-pointer active:scale-[0.97] ${
                   checked
-                    ? 'bg-[#0D5C46]/10 dark:bg-[#34D399]/15 border-[#0D5C46] dark:border-[#34D399]'
+                    ? 'bg-brand/10 dark:bg-brand-dark/15 border-brand dark:border-brand-dark'
                     : 'bg-[#F8F7F4] dark:bg-[#0D1714] border-[#E5E2DC] dark:border-[#1E2E28]'
                 }`}
               >
@@ -368,7 +368,7 @@ export function DailyRoutineView({
                 <div
                   className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
                     checked
-                      ? 'bg-[#0D5C46] text-white'
+                      ? 'bg-brand text-white'
                       : 'border border-[#C9C4BA] dark:border-[#2C3E37]'
                   }`}
                 >
@@ -388,7 +388,7 @@ export function DailyRoutineView({
           </h2>
           <button
             onClick={() => onNavigateTab('azkaar')}
-            className="min-h-[38px] px-3 rounded-xl text-xs font-semibold text-[#0D5C46] dark:text-[#34D399] bg-[#0D5C46]/10 cursor-pointer"
+            className="min-h-[38px] px-3 rounded-xl text-xs font-semibold text-brand dark:text-brand-dark bg-brand/10 cursor-pointer"
           >
             Read Azkaar
           </button>
@@ -399,7 +399,7 @@ export function DailyRoutineView({
             onClick={() => updateField('morningAzkaar', !log.morningAzkaar)}
             className={`min-h-[60px] p-3.5 rounded-2xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer active:scale-[0.98] ${
               log.morningAzkaar
-                ? 'bg-[#0D5C46]/10 dark:bg-[#34D399]/15 border-[#0D5C46] dark:border-[#34D399]'
+                ? 'bg-brand/10 dark:bg-brand-dark/15 border-brand dark:border-brand-dark'
                 : 'bg-[#F8F7F4] dark:bg-[#0D1714] border-[#E5E2DC] dark:border-[#1E2E28]'
             }`}
           >
@@ -413,7 +413,7 @@ export function DailyRoutineView({
             <div
               className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
                 log.morningAzkaar
-                  ? 'bg-[#0D5C46] text-white'
+                  ? 'bg-brand text-white'
                   : 'border border-[#C9C4BA] dark:border-[#2C3E37]'
               }`}
             >
@@ -425,7 +425,7 @@ export function DailyRoutineView({
             onClick={() => updateField('eveningAzkaar', !log.eveningAzkaar)}
             className={`min-h-[60px] p-3.5 rounded-2xl border text-left flex items-center justify-between gap-3 transition-all cursor-pointer active:scale-[0.98] ${
               log.eveningAzkaar
-                ? 'bg-[#0D5C46]/10 dark:bg-[#34D399]/15 border-[#0D5C46] dark:border-[#34D399]'
+                ? 'bg-brand/10 dark:bg-brand-dark/15 border-brand dark:border-brand-dark'
                 : 'bg-[#F8F7F4] dark:bg-[#0D1714] border-[#E5E2DC] dark:border-[#1E2E28]'
             }`}
           >
@@ -439,7 +439,7 @@ export function DailyRoutineView({
             <div
               className={`w-6 h-6 rounded-full flex items-center justify-center shrink-0 ${
                 log.eveningAzkaar
-                  ? 'bg-[#0D5C46] text-white'
+                  ? 'bg-brand text-white'
                   : 'border border-[#C9C4BA] dark:border-[#2C3E37]'
               }`}
             >
@@ -480,13 +480,13 @@ export function DailyRoutineView({
             onClick={() => updateField('roza', !log.roza)}
             className={`min-h-[44px] px-4 rounded-2xl text-xs font-semibold flex items-center gap-2 transition-colors cursor-pointer shrink-0 ${
               log.roza
-                ? 'bg-gradient-to-r from-[#0D5C46] to-[#0F766E] text-white shadow-sm'
+                ? 'bg-gradient-to-r from-brand to-brand-to text-white shadow-sm'
                 : 'bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] text-[#4B5550] dark:text-[#9AA8A1]'
             }`}
           >
             <div
               className={`w-4 h-4 rounded-full flex items-center justify-center ${
-                log.roza ? 'bg-white text-[#0D5C46]' : 'border border-current'
+                log.roza ? 'bg-white text-brand' : 'border border-current'
               }`}
             >
               {log.roza && <Check className="w-3 h-3 stroke-[3]" />}
@@ -547,7 +547,7 @@ export function DailyRoutineView({
           </div>
           <button
             onClick={() => onNavigateTab('quran')}
-            className="min-h-[38px] px-3 rounded-xl text-xs font-semibold text-[#0D5C46] dark:text-[#34D399] bg-[#0D5C46]/10 cursor-pointer"
+            className="min-h-[38px] px-3 rounded-xl text-xs font-semibold text-brand dark:text-brand-dark bg-brand/10 cursor-pointer"
           >
             Open Quran
           </button>
@@ -576,7 +576,7 @@ export function DailyRoutineView({
                 <button
                   onClick={() => updateField(metric.key, metric.value + 1)}
                   aria-label={`Increase ${metric.label}`}
-                  className="w-9 h-9 rounded-xl bg-[#0D5C46] text-white flex items-center justify-center cursor-pointer active:scale-95"
+                  className="w-9 h-9 rounded-xl bg-brand text-white flex items-center justify-center cursor-pointer active:scale-95"
                 >
                   <Plus className="w-3.5 h-3.5" />
                 </button>
@@ -591,7 +591,7 @@ export function DailyRoutineView({
           onChange={(e) => onChangeLog({ ...log, quranLastSurah: e.target.value })}
           onBlur={() => void onSaveLog(log)}
           placeholder="Last Surah / Ayah recited..."
-          className="w-full min-h-[44px] px-3.5 rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D5C46]"
+          className="w-full min-h-[44px] px-3.5 rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] text-sm focus:outline-none focus:ring-2 focus:ring-brand"
         />
       </section>
 
@@ -604,7 +604,7 @@ export function DailyRoutineView({
         <div className="p-3.5 rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] space-y-2.5">
           <div className="flex items-center justify-between gap-2">
             <div className="flex items-center gap-2.5">
-              <BookOpen className="w-5 h-5 text-[#0D5C46] dark:text-[#34D399]" />
+              <BookOpen className="w-5 h-5 text-brand dark:text-brand-dark" />
               <div>
                 <p className="text-sm font-semibold">Daily Taleem (Hadees)</p>
                 <p className="text-[11px] text-[#6B7570] dark:text-[#8A9690]">
@@ -616,7 +616,7 @@ export function DailyRoutineView({
               onClick={() => updateField('dailyTaleem', !log.dailyTaleem)}
               className={`min-h-[40px] px-3.5 rounded-xl text-xs font-semibold cursor-pointer ${
                 log.dailyTaleem
-                  ? 'bg-[#0D5C46] text-white'
+                  ? 'bg-brand text-white'
                   : 'bg-white dark:bg-[#162620] border border-[#E5E2DC] dark:border-[#243830]'
               }`}
             >
@@ -634,7 +634,7 @@ export function DailyRoutineView({
             />
             <button
               onClick={() => onNavigateTab('hadees')}
-              className="min-h-[42px] px-3 rounded-xl text-xs font-semibold text-[#0D5C46] dark:text-[#34D399] bg-[#0D5C46]/10 cursor-pointer whitespace-nowrap"
+              className="min-h-[42px] px-3 rounded-xl text-xs font-semibold text-brand dark:text-brand-dark bg-brand/10 cursor-pointer whitespace-nowrap"
             >
               Open Book
             </button>
@@ -656,7 +656,7 @@ export function DailyRoutineView({
               onClick={() => updateField('quranHalqa', !log.quranHalqa)}
               className={`min-h-[40px] px-3.5 rounded-xl text-xs font-semibold cursor-pointer ${
                 log.quranHalqa
-                  ? 'bg-[#0D5C46] text-white'
+                  ? 'bg-brand text-white'
                   : 'bg-white dark:bg-[#162620] border border-[#E5E2DC] dark:border-[#243830]'
               }`}
             >
@@ -678,7 +678,7 @@ export function DailyRoutineView({
       <section className="rounded-3xl bg-white dark:bg-[#121E1A] border border-[#E5E2DC] dark:border-[#1E2E28] p-4 space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <HeartHandshake className="w-5 h-5 text-[#0D5C46] dark:text-[#34D399]" />
+            <HeartHandshake className="w-5 h-5 text-brand dark:text-brand-dark" />
             <h2 className="font-[family-name:var(--font-display)] text-lg font-semibold">
               06. Other Nek Amaal
             </h2>
@@ -701,7 +701,7 @@ export function DailyRoutineView({
                 <div
                   className={`w-6 h-6 rounded-lg flex items-center justify-center shrink-0 ${
                     item.completed
-                      ? 'bg-[#0D5C46] text-white'
+                      ? 'bg-brand text-white'
                       : 'border border-[#C9C4BA] dark:border-[#2C3E37]'
                   }`}
                 >
@@ -750,7 +750,7 @@ export function DailyRoutineView({
           />
           <button
             onClick={handleAddNekAmaal}
-            className="min-h-[44px] px-4 rounded-2xl bg-[#0D5C46] text-white text-sm font-semibold cursor-pointer shrink-0"
+            className="min-h-[44px] px-4 rounded-2xl bg-brand text-white text-sm font-semibold cursor-pointer shrink-0"
           >
             Add
           </button>
@@ -760,7 +760,7 @@ export function DailyRoutineView({
       {/* 8. Honest Evening Submission */}
       <section className="rounded-3xl bg-white dark:bg-[#121E1A] border border-[#E5E2DC] dark:border-[#1E2E28] p-4 space-y-3">
         <div className="flex items-center gap-2">
-          <Moon className="w-5 h-5 text-[#0D5C46] dark:text-[#34D399]" />
+          <Moon className="w-5 h-5 text-brand dark:text-brand-dark" />
           <div>
             <h2 className="font-[family-name:var(--font-display)] text-lg font-semibold">
               07. Honest Evening Submission
@@ -784,7 +784,7 @@ export function DailyRoutineView({
           whileTap={{ scale: 0.97 }}
           onClick={() => void handleHonestSubmit()}
           disabled={saving}
-          className="w-full min-h-[52px] px-6 py-3.5 rounded-2xl bg-gradient-to-r from-[#0D5C46] to-[#127A5D] text-white font-semibold text-sm shadow-lg shadow-[#0D5C46]/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
+          className="w-full min-h-[52px] px-6 py-3.5 rounded-2xl bg-gradient-to-r from-brand to-brand-to text-white font-semibold text-sm shadow-lg shadow-brand/25 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-60"
         >
           {log.honestSubmitted ? (
             <>

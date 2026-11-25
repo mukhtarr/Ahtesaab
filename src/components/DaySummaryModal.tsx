@@ -91,7 +91,7 @@ export function DaySummaryModal({
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <div className="p-3.5 rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28]">
                   <p className="text-xs text-[#6B7570] dark:text-[#8A9690]">Farz Namaz</p>
-                  <p className="text-2xl font-bold tabular-nums mt-1 text-[#0D5C46] dark:text-[#34D399]">
+                  <p className="text-2xl font-bold tabular-nums mt-1 text-brand dark:text-brand-dark">
                     {offeredFarz}/5
                   </p>
                   <p className="text-xs text-[#6B7570] dark:text-[#8A9690] tabular-nums">
@@ -133,7 +133,7 @@ export function DaySummaryModal({
                         key={f.key}
                         className={`p-2.5 rounded-xl border text-center ${
                           isDone
-                            ? 'bg-[#0D5C46]/10 border-[#0D5C46]/30 text-[#0D5C46] dark:text-[#34D399]'
+                            ? 'bg-brand/10 border-brand/30 text-brand dark:text-brand-dark'
                             : 'bg-[#F8F7F4] dark:bg-[#0D1714] border-[#E5E2DC] dark:border-[#1E2E28] text-[#6B7570]'
                         }`}
                       >
@@ -172,7 +172,7 @@ export function DaySummaryModal({
 
                 <div className="p-4 rounded-2xl border border-[#E5E2DC] dark:border-[#1E2E28] space-y-2">
                   <div className="flex items-center gap-2 font-semibold">
-                    <BookOpen className="w-4 h-4 text-[#0D5C46] dark:text-[#34D399]" />
+                    <BookOpen className="w-4 h-4 text-brand dark:text-brand-dark" />
                     <span>Taleem & Quran Halqa</span>
                   </div>
                   <p className="text-xs text-[#4B5550] dark:text-[#A3B0AA]">
@@ -195,8 +195,8 @@ export function DaySummaryModal({
                 </div>
               )}
 
-              <div className="p-4 rounded-2xl bg-[#0D5C46]/5 dark:bg-[#34D399]/10 border border-[#0D5C46]/20 flex items-start gap-3">
-                <Users className="w-4 h-4 text-[#0D5C46] dark:text-[#34D399] shrink-0 mt-0.5" />
+              <div className="p-4 rounded-2xl bg-brand/5 dark:bg-brand-dark/10 border border-brand/20 flex items-start gap-3">
+                <Users className="w-4 h-4 text-brand dark:text-brand-dark shrink-0 mt-0.5" />
                 <p className="text-xs text-[#4B5550] dark:text-[#B4C0BA] leading-relaxed">
                   “The most beloved deeds to Allah are those that are most consistent, even if they
                   are small.” — Sahih al-Bukhari 6464. May Allah accept your efforts and grant you
@@ -206,7 +206,7 @@ export function DaySummaryModal({
 
               <button
                 onClick={onClose}
-                className="w-full min-h-[48px] rounded-xl bg-[#0D5C46] hover:bg-[#094635] text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                className="w-full min-h-[48px] rounded-xl bg-brand hover:opacity-95 text-white font-semibold text-sm flex items-center justify-center gap-2 transition-colors cursor-pointer"
               >
                 <CheckCircle2 className="w-4 h-4" />
                 <span>Done</span>

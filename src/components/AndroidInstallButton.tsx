@@ -28,8 +28,8 @@ export function AndroidInstallButton({ compact = false }: AndroidInstallButtonPr
         onClick={handlePress}
         className={
           compact
-            ? 'min-h-[38px] px-3 py-1.5 rounded-xl bg-[#0D5C46] hover:bg-[#094635] text-white text-xs font-semibold flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer'
-            : 'w-full min-h-[46px] px-4 py-2.5 rounded-2xl bg-[#0D5C46] hover:bg-[#094635] text-white text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer'
+            ? 'min-h-[38px] px-3 py-1.5 rounded-xl bg-brand hover:opacity-95 text-white text-xs font-semibold flex items-center gap-1.5 transition-colors whitespace-nowrap shrink-0 cursor-pointer'
+            : 'w-full min-h-[46px] px-4 py-2.5 rounded-2xl bg-brand hover:opacity-95 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer'
         }
       >
         <Download className="w-4 h-4 shrink-0" />
@@ -42,7 +42,7 @@ export function AndroidInstallButton({ compact = false }: AndroidInstallButtonPr
             <div className="w-10 h-1.5 bg-[#D5D1C8] dark:bg-[#2A3F36] rounded-full mx-auto" />
             <div className="flex items-start justify-between gap-3">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-[#0D5C46]/10 text-[#0D5C46] dark:text-[#34D399] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-2xl bg-brand/10 text-brand dark:text-brand-dark flex items-center justify-center">
                   <Smartphone className="w-5 h-5" />
                 </div>
                 <div>
@@ -80,7 +80,7 @@ export function AndroidInstallButton({ compact = false }: AndroidInstallButtonPr
 
             <button
               onClick={() => setShowGuide(false)}
-              className="w-full min-h-[46px] rounded-2xl bg-[#0D5C46] text-white text-sm font-semibold cursor-pointer"
+              className="w-full min-h-[46px] rounded-2xl bg-brand text-white text-sm font-semibold cursor-pointer"
             >
               Got It
             </button>

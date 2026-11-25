@@ -58,22 +58,22 @@ export function AuthGate({ onSignIn, loading, error }: AuthGateProps) {
 
           <div className="grid grid-cols-2 gap-3">
             <div className="p-3.5 rounded-2xl bg-white dark:bg-[#121E1A] border border-[#E5E2DC] dark:border-[#1E2E28] space-y-1">
-              <BellRing className="w-4 h-4 text-[#0D5C46] dark:text-[#34D399]" />
+              <BellRing className="w-4 h-4 text-brand dark:text-brand-dark" />
               <p className="text-xs font-semibold">Loud Azaan</p>
               <p className="text-[11px] text-[#6B7570] dark:text-[#8A9690]">On-time prayer calls</p>
             </div>
             <div className="p-3.5 rounded-2xl bg-white dark:bg-[#121E1A] border border-[#E5E2DC] dark:border-[#1E2E28] space-y-1">
-              <BookOpen className="w-4 h-4 text-[#0D5C46] dark:text-[#34D399]" />
+              <BookOpen className="w-4 h-4 text-brand dark:text-brand-dark" />
               <p className="text-xs font-semibold">Quran &amp; Hadees</p>
               <p className="text-[11px] text-[#6B7570] dark:text-[#8A9690]">Urdu &amp; English built-in</p>
             </div>
             <div className="p-3.5 rounded-2xl bg-white dark:bg-[#121E1A] border border-[#E5E2DC] dark:border-[#1E2E28] space-y-1">
-              <Sparkles className="w-4 h-4 text-[#0D5C46] dark:text-[#34D399]" />
+              <Sparkles className="w-4 h-4 text-brand dark:text-brand-dark" />
               <p className="text-xs font-semibold">Sunnah Azkaar</p>
               <p className="text-[11px] text-[#6B7570] dark:text-[#8A9690]">Tactile tasbeeh tap</p>
             </div>
             <div className="p-3.5 rounded-2xl bg-white dark:bg-[#121E1A] border border-[#E5E2DC] dark:border-[#1E2E28] space-y-1">
-              <Moon className="w-4 h-4 text-[#0D5C46] dark:text-[#34D399]" />
+              <Moon className="w-4 h-4 text-brand dark:text-brand-dark" />
               <p className="text-xs font-semibold">Sleep Check</p>
               <p className="text-[11px] text-[#6B7570] dark:text-[#8A9690]">Honest day summary</p>
             </div>
@@ -93,7 +93,7 @@ export function AuthGate({ onSignIn, loading, error }: AuthGateProps) {
           <button
             onClick={onSignIn}
             disabled={loading}
-            className="w-full min-h-[52px] px-6 py-3.5 rounded-2xl bg-[#0D5C46] hover:bg-[#094635] text-white font-semibold text-sm shadow-lg shadow-[#0D5C46]/20 transition-all active:scale-[0.98] cursor-pointer disabled:opacity-60"
+            className="w-full min-h-[52px] px-6 py-3.5 rounded-2xl bg-brand hover:opacity-95 text-white font-semibold text-sm shadow-lg shadow-brand/20 transition-all active:scale-[0.98] cursor-pointer disabled:opacity-60"
           >
             {loading ? 'Signing in...' : 'Sign in with Google'}
           </button>

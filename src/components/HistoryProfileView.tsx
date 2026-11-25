@@ -9,6 +9,7 @@ import {
   LogOut,
   MapPin,
   Moon,
+  Palette,
   RefreshCw,
   Save,
   Volume2,
@@ -28,12 +29,15 @@ import {
   fetchPrayerTimesForCity,
   POPULAR_CITIES,
 } from '../utils/locationPrayerTimes';
+import { THEME_PALETTES, type ThemeColorId } from '../utils/themeColors';
 import { AndroidInstallButton } from './AndroidInstallButton';
 import { WeeklyTrendsChart } from './WeeklyTrendsChart';
 
 interface HistoryProfileViewProps {
   profile: UserProfile;
   history: DailyLog[];
+  themeColor: ThemeColorId;
+  onChangeThemeColor: (id: ThemeColorId) => void;
   onSaveProfile: (updated: Partial<UserProfile>) => Promise<void>;
   onSelectHistoryDate: (date: string) => void;
   onTestAzaan: (prayerLabel: string) => void;
@@ -47,6 +51,8 @@ const FARZ_KEYS: FarzKey[] = ['fajr', 'zuhr', 'asr', 'maghrib', 'isha'];
 export function HistoryProfileView({
   profile,
   history,
+  themeColor,
+  onChangeThemeColor,
   onSaveProfile,
   onSelectHistoryDate,
   onTestAzaan,
@@ -206,9 +212,9 @@ export function HistoryProfileView({
       <section className="grid grid-cols-2 gap-3">
         <motion.div
           whileHover={{ y: -2 }}
-          className="p-4 rounded-3xl bg-gradient-to-br from-[#0D5C46] to-[#0F766E] text-white shadow-sm"
+          className="p-4 rounded-3xl bg-gradient-to-br from-brand to-brand-to text-white shadow-sm"
         >
-          <p className="text-[11px] text-emerald-100">Days Tracked</p>
+          <p className="text-[11px] text-white/85">Days Tracked</p>
           <p className="text-2xl font-bold tabular-nums mt-0.5">{totalDays}</p>
         </motion.div>
         <motion.div
@@ -223,7 +229,7 @@ export function HistoryProfileView({
           className="p-4 rounded-3xl bg-white dark:bg-[#121E1A] border border-[#E5E2DC] dark:border-[#1E2E28]"
         >
           <p className="text-[11px] text-[#6B7570] dark:text-[#8A9690]">Total Farz Offered</p>
-          <p className="text-2xl font-bold tabular-nums mt-0.5 text-[#0D5C46] dark:text-[#34D399]">
+          <p className="text-2xl font-bold tabular-nums mt-0.5 text-brand dark:text-brand-dark">
             {totalFarzOffered}
           </p>
         </motion.div>
@@ -273,7 +279,7 @@ export function HistoryProfileView({
                   onClick={() => setSelectedPastLog(day)}
                   className={`w-full min-h-[58px] p-3.5 rounded-2xl border text-left flex items-center justify-between gap-3 cursor-pointer transition-colors ${
                     active
-                      ? 'bg-[#0D5C46]/10 dark:bg-[#34D399]/15 border-[#0D5C46] dark:border-[#34D399]'
+                      ? 'bg-brand/10 dark:bg-brand-dark/15 border-brand dark:border-brand-dark'
                       : 'bg-[#F8F7F4] dark:bg-[#0D1714] border-[#E5E2DC] dark:border-[#1E2E28]'
                   }`}
                 >
@@ -287,7 +293,7 @@ export function HistoryProfileView({
                       {day.roza ? ` · Roza (${day.rozaType === 'qaza' ? 'Qaza' : 'Sunnah'})` : ''}
                     </p>
                   </div>
-                  <span className="text-xs font-semibold text-[#0D5C46] dark:text-[#34D399]">
+                  <span className="text-xs font-semibold text-brand dark:text-brand-dark">
                     View
                   </span>
                 </motion.button>
@@ -312,7 +318,7 @@ export function HistoryProfileView({
                 </p>
                 <button
                   onClick={() => onSelectHistoryDate(selectedPastLog.date)}
-                  className="text-xs font-semibold text-[#0D5C46] dark:text-[#34D399] underline cursor-pointer"
+                  className="text-xs font-semibold text-brand dark:text-brand-dark underline cursor-pointer"
                 >
                   Edit Day
                 </button>
@@ -356,12 +362,12 @@ export function HistoryProfileView({
 
       {/* Profile & Android Loud Azaan Schedule */}
       <section className="rounded-3xl bg-white dark:bg-[#121E1A] border border-[#E5E2DC] dark:border-[#1E2E28] overflow-hidden shadow-sm">
-        <div className="bg-gradient-to-r from-[#0D5C46] via-[#0F766E] to-[#1D4ED8] text-white p-4 flex items-center justify-between gap-2">
+        <div className="bg-gradient-to-r from-brand via-brand-to to-[#B4833E] text-white p-4 flex items-center justify-between gap-2">
           <div className="min-w-0">
             <h2 className="font-[family-name:var(--font-display)] text-xl font-semibold">
               Profile &amp; Azaan Schedule
             </h2>
-            <p className="text-[11px] text-emerald-100 truncate">
+            <p className="text-[11px] text-white/85 truncate">
               {profile.email}
             </p>
           </div>
@@ -375,6 +381,53 @@ export function HistoryProfileView({
         </div>
 
         <div className="p-4 space-y-4">
+          {/* App Theme Color Picker */}
+          <div className="p-3.5 rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] space-y-2.5">
+            <div className="flex items-center justify-between gap-2">
+              <div className="flex items-center gap-2">
+                <Palette className="w-4 h-4 text-brand dark:text-brand-dark shrink-0" />
+                <span className="text-xs font-semibold">App Theme Color</span>
+              </div>
+              <span className="text-[11px] text-[#6B7570] dark:text-[#8A9690]">
+                {THEME_PALETTES.find((p) => p.id === themeColor)?.name ?? 'Emerald Masjid'}
+              </span>
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+              {THEME_PALETTES.map((palette) => {
+                const active = themeColor === palette.id;
+                return (
+                  <motion.button
+                    key={palette.id}
+                    type="button"
+                    whileTap={{ scale: 0.96 }}
+                    onClick={() => {
+                      vibrateAndroid(12);
+                      onChangeThemeColor(palette.id);
+                    }}
+                    aria-pressed={active}
+                    className={`min-h-[44px] px-2.5 py-2 rounded-xl border text-left flex items-center gap-2 cursor-pointer transition-colors ${
+                      active
+                        ? 'bg-white dark:bg-[#192923] border-brand dark:border-brand-dark shadow-sm'
+                        : 'bg-white/60 dark:bg-[#121E1A] border-[#E5E2DC] dark:border-[#1E2E28]'
+                    }`}
+                  >
+                    <span
+                      className="w-5 h-5 rounded-full shrink-0 flex items-center justify-center text-white shadow-xs"
+                      style={{
+                        background: `linear-gradient(135deg, ${palette.primary}, ${palette.primaryTo})`,
+                      }}
+                    >
+                      {active && <Check className="w-3 h-3" />}
+                    </span>
+                    <span className="text-[11px] font-semibold truncate text-[#141A17] dark:text-[#F3F4F1]">
+                      {palette.name}
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </div>
+          </div>
           <div className="grid grid-cols-1 gap-2.5">
             <label className="space-y-1 text-[11px] font-medium">
               <span>Full Name</span>
@@ -393,7 +446,7 @@ export function HistoryProfileView({
                 <button
                   type="button"
                   onClick={() => setShowCityPicker((v) => !v)}
-                  className="text-[11px] font-semibold text-[#0D5C46] dark:text-[#34D399] cursor-pointer"
+                  className="text-[11px] font-semibold text-brand dark:text-brand-dark cursor-pointer"
                 >
                   {showCityPicker ? 'Hide Cities' : 'Popular Cities'}
                 </button>
@@ -401,7 +454,7 @@ export function HistoryProfileView({
 
               <div className="flex gap-2">
                 <div className="relative flex-1">
-                  <MapPin className="w-4 h-4 text-[#0D5C46] dark:text-[#34D399] absolute left-3 top-1/2 -translate-y-1/2" />
+                  <MapPin className="w-4 h-4 text-brand dark:text-brand-dark absolute left-3 top-1/2 -translate-y-1/2" />
                   <input
                     type="text"
                     value={city}
@@ -429,7 +482,7 @@ export function HistoryProfileView({
                 type="button"
                 disabled={locating}
                 onClick={() => void handleUseCurrentLocation()}
-                className="w-full min-h-[44px] px-4 rounded-2xl bg-gradient-to-r from-[#0F766E] to-[#1D4ED8] text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-sm cursor-pointer disabled:opacity-60"
+                className="w-full min-h-[44px] px-4 rounded-2xl bg-gradient-to-r from-brand to-brand-to text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-sm cursor-pointer disabled:opacity-60"
               >
                 {locating ? (
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -474,7 +527,7 @@ export function HistoryProfileView({
                           key={item.city}
                           type="button"
                           onClick={() => void handlePickCity(item.city, item.country)}
-                          className="min-h-[34px] px-2.5 rounded-xl bg-white dark:bg-[#162620] border border-[#E5E2DC] dark:border-[#243830] text-[11px] font-medium hover:border-[#0D5C46] cursor-pointer"
+                          className="min-h-[34px] px-2.5 rounded-xl bg-white dark:bg-[#162620] border border-[#E5E2DC] dark:border-[#243830] text-[11px] font-medium hover:border-brand cursor-pointer"
                         >
                           {item.city}
                         </button>
@@ -513,13 +566,13 @@ export function HistoryProfileView({
           <div className="p-3.5 rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] space-y-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Volume2 className="w-4 h-4 text-[#0D5C46] dark:text-[#34D399]" />
+                <Volume2 className="w-4 h-4 text-brand dark:text-brand-dark" />
                 <span className="text-xs font-semibold">Loud Azaan Alerts</span>
               </div>
               <button
                 onClick={() => setAzaanEnabled((v) => !v)}
                 className={`min-h-[36px] px-3 rounded-xl text-xs font-semibold cursor-pointer ${
-                  azaanEnabled ? 'bg-[#0D5C46] text-white' : 'bg-[#E5E2DC] dark:bg-[#1E2E28]'
+                  azaanEnabled ? 'bg-brand text-white' : 'bg-[#E5E2DC] dark:bg-[#1E2E28]'
                 }`}
               >
                 {azaanEnabled ? 'Enabled' : 'Muted'}
@@ -535,7 +588,7 @@ export function HistoryProfileView({
                 max={100}
                 value={azaanVolume}
                 onChange={(e) => setAzaanVolume(Number(e.target.value))}
-                className="flex-1 accent-[#0D5C46]"
+                className="flex-1 accent-brand"
               />
             </div>
             <div className="grid grid-cols-2 gap-2">
@@ -543,7 +596,7 @@ export function HistoryProfileView({
                 onClick={() => onTestAzaan('Fajr')}
                 className="min-h-[40px] px-3 rounded-xl bg-white dark:bg-[#162620] border border-[#E5E2DC] dark:border-[#243830] text-xs font-medium flex items-center justify-center gap-1.5 cursor-pointer"
               >
-                <BellRing className="w-3.5 h-3.5 text-[#0D5C46]" />
+                <BellRing className="w-3.5 h-3.5 text-brand dark:text-brand-dark" />
                 <span>Test Loud Azaan</span>
               </button>
               <button
@@ -607,7 +660,7 @@ export function HistoryProfileView({
               whileTap={{ scale: 0.97 }}
               onClick={() => void handleSave()}
               disabled={saving}
-              className="w-full min-h-[48px] px-6 rounded-2xl bg-gradient-to-r from-[#0D5C46] to-[#0F766E] text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-md shadow-[#0D5C46]/20 cursor-pointer disabled:opacity-60"
+              className="w-full min-h-[48px] px-6 rounded-2xl bg-gradient-to-r from-brand to-brand-to text-white text-sm font-semibold flex items-center justify-center gap-2 shadow-md shadow-brand/20 cursor-pointer disabled:opacity-60"
             >
               {savedNotice ? <Check className="w-4 h-4" /> : <Save className="w-4 h-4" />}
               <span>{savedNotice ? 'Profile Saved' : saving ? 'Saving...' : 'Save Settings'}</span>
@@ -617,7 +670,7 @@ export function HistoryProfileView({
               onClick={() => setShowBlueprintModal(true)}
               className="w-full min-h-[44px] px-4 rounded-2xl border border-[#E5E2DC] dark:border-[#1E2E28] text-xs font-semibold flex items-center justify-center gap-2 cursor-pointer"
             >
-              <Code2 className="w-4 h-4 text-[#0D5C46] dark:text-[#34D399]" />
+              <Code2 className="w-4 h-4 text-brand dark:text-brand-dark" />
               <span>View Android Flutter &amp; MySQL Source</span>
             </button>
           </div>
@@ -684,7 +737,7 @@ export function HistoryProfileView({
 
                 <button
                   onClick={() => void handleCopyCode()}
-                  className="min-h-[36px] px-3 rounded-xl bg-[#0D5C46] text-white text-xs font-semibold flex items-center gap-1 cursor-pointer shrink-0"
+                  className="min-h-[36px] px-3 rounded-xl bg-brand text-white text-xs font-semibold flex items-center gap-1 cursor-pointer shrink-0"
                 >
                   {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
                   <span>{copied ? 'Copied' : 'Copy'}</span>

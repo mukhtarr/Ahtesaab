@@ -1,9 +1,18 @@
-export type AzkaarCategory = 'morning' | 'evening' | 'both' | 'salah' | 'sleep';
+export type AzkaarCategory = 'morning' | 'evening' | 'both' | 'salah' | 'sleep' | 'dua';
+
+export type MasnoonDuaGroup =
+  | 'All Duas'
+  | 'Home & Family'
+  | 'Travel & Masjid'
+  | 'Food & Dress'
+  | 'Distress & Istikhara'
+  | 'Forgiveness & Guidance';
 
 export interface AzkaarItem {
   id: string;
   title: string;
   period: AzkaarCategory;
+  duaGroup?: Exclude<MasnoonDuaGroup, 'All Duas'>;
   targetCount: number;
   arabic: string;
   transliteration: string;
@@ -11,6 +20,15 @@ export interface AzkaarItem {
   urdu: string;
   virtue: string;
 }
+
+export const MASNOON_DUA_GROUPS: MasnoonDuaGroup[] = [
+  'All Duas',
+  'Home & Family',
+  'Travel & Masjid',
+  'Food & Dress',
+  'Distress & Istikhara',
+  'Forgiveness & Guidance',
+];
 
 export const AZKAAR_LIST: AzkaarItem[] = [
   // Morning & Evening Core Fortress (Hisn-ul-Muslim)
@@ -335,8 +353,7 @@ export const AZKAAR_LIST: AzkaarItem[] = [
     title: 'Durood Sharif — Blessings on the Prophet (10x)',
     period: 'both',
     targetCount: 10,
-    arabic:
-      'اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ',
+    arabic: 'اللَّهُمَّ صَلِّ وَسَلِّمْ عَلَى نَبِيِّنَا مُحَمَّدٍ',
     transliteration: 'Allahumma salli wa sallim ala nabiyyina Muhammad.',
     english: 'O Allah, send peace and blessings upon our Prophet Muhammad (SAW).',
     urdu: 'اے اللہ! ہمارے نبی حضرت محمد ﷺ پر درود و سلام نازل فرما۔',
@@ -363,10 +380,8 @@ export const AZKAAR_LIST: AzkaarItem[] = [
     title: 'Dua for Gratitude & Excellence in Worship',
     period: 'salah',
     targetCount: 1,
-    arabic:
-      'اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ',
-    transliteration:
-      'Allahumma a’inni ala dhikrika, wa shukrika, wa husni ibadatik.',
+    arabic: 'اللَّهُمَّ أَعِنِّي عَلَى ذِكْرِكَ، وَشُكْرِكَ، وَحُسْنِ عِبَادَتِكَ',
+    transliteration: 'Allahumma a’inni ala dhikrika, wa shukrika, wa husni ibadatik.',
     english:
       'O Allah, help me to remember You, to thank You, and to worship You in the best manner.',
     urdu: 'اے اللہ! اپنے ذکر، اپنے شکر اور اپنی بہترین عبادت پر میری مدد فرما۔',
@@ -442,5 +457,562 @@ export const AZKAAR_LIST: AzkaarItem[] = [
       'The Messenger has believed in what was revealed to him from his Lord, and so have the believers... Our Lord, do not impose blame upon us if we have forgotten or erred, and pardon us, forgive us, and have mercy upon us.',
     urdu: 'رسول ایمان لائے اس پر جو ان کے رب کی طرف سے نازل ہوا اور مومن بھی... اے ہمارے رب اگر ہم بھول جائیں یا غلطی کریں تو ہماری گرفت نہ فرما اور ہمیں معاف فرما کر رحم فرما۔',
     virtue: 'Whoever recites these two verses at night, they will suffice him (Bukhari & Muslim).',
+  },
+
+  // =========================================================================
+  // ALL MASNOON DUAS (Hisn-ul-Muslim Daily Sunnah Supplications)
+  // =========================================================================
+
+  // Home & Family
+  {
+    id: 'dua-waking-up',
+    title: 'Dua Upon Waking Up from Sleep',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic:
+      'الْحَمْدُ لِلَّهِ الَّذِي أَحْيَانَا بَعْدَ مَا أَمَاتَنَا وَإِلَيْهِ النُّشُورُ',
+    transliteration: 'Alhamdulillahilladhi ahyana ba’da ma amatana wa ilayhin-nushur.',
+    english:
+      'All praise is for Allah who gave us life after having taken it from us, and unto Him is the resurrection.',
+    urdu: 'تمام تعریفیں اللہ کے لیے ہیں جس نے ہمیں موت (نیند) کے بعد زندگی عطا فرمائی اور اسی کی طرف لوٹ کر جانا ہے۔',
+    virtue: 'First Masnoon Dua recited upon opening one’s eyes (Sahih al-Bukhari 6312).',
+  },
+  {
+    id: 'dua-enter-washroom',
+    title: 'Dua Before Entering the Washroom',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic: 'بِسْمِ اللَّهِ، اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْخُبُثِ وَالْخَبَائِثِ',
+    transliteration: 'Bismillah, Allahumma inni a’udhu bika minal-khubuthi wal-khaba’ith.',
+    english:
+      'In the name of Allah. O Allah, I seek refuge in You from male and female evil spirits.',
+    urdu: 'اللہ کے نام سے، اے اللہ! میں ناپاک جنوں (نر و مادہ) کے شر سے تیری پناہ مانگتا ہوں۔',
+    virtue: 'Recited before stepping into the washroom (Bukhari 142 & Muslim 375).',
+  },
+  {
+    id: 'dua-leave-washroom',
+    title: 'Dua Upon Leaving the Washroom',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic: 'غُفْرَانَكَ',
+    transliteration: 'Ghufranaka.',
+    english: 'I seek Your forgiveness (O Allah).',
+    urdu: 'اے اللہ! میں تیری بخشش چاہتا ہوں۔',
+    virtue: 'Sunnah upon stepping out of the washroom (Abu Dawud 30 & Tirmidhi 7).',
+  },
+  {
+    id: 'dua-before-wudu',
+    title: 'Dua Before Performing Wudu (Ablution)',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic: 'بِسْمِ اللَّهِ',
+    transliteration: 'Bismillah.',
+    english: 'In the name of Allah.',
+    urdu: 'اللہ کے نام سے شروع کرتا ہوں۔',
+    virtue: 'There is no complete Wudu without mentioning the name of Allah (Abu Dawud 101).',
+  },
+  {
+    id: 'dua-after-wudu',
+    title: 'Dua After Completing Wudu',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic:
+      'أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ وَأَشْهَدُ أَنَّ مُحَمَّدًا عَبْدُهُ وَرَسُولُهُ ۝ اللَّهُمَّ اجْعَلْنِي مِنَ التَّوَّابِينَ وَاجْعَلْنِي مِنَ الْمُتَطَهِّرِينَ',
+    transliteration:
+      'Ash-hadu an la ilaha illAllahu wahdahu la sharika lah, wa ash-hadu anna Muhammadan abduhu wa rasuluh. Allahummaj’alni minat-tawwabina waj’alni minal-mutatahhirin.',
+    english:
+      'I bear witness that none has the right to be worshipped except Allah alone, and Muhammad is His servant and Messenger. O Allah, make me among those who repent and purify themselves.',
+    urdu: 'میں گواہی دیتا ہوں کہ اللہ کے سوا کوئی معبود نہیں وہ اکیلا ہے، اور محمد ﷺ اس کے بندے اور رسول ہیں۔ اے اللہ! مجھے توبہ کرنے والوں اور پاک صاف رہنے والوں میں شامل فرما۔',
+    virtue: 'All eight gates of Paradise are opened for the one who recites it (Muslim 234 & Tirmidhi 55).',
+  },
+  {
+    id: 'dua-leave-home',
+    title: 'Dua When Leaving the House',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic:
+      'بِسْمِ اللَّهِ، تَوَكَّلْتُ عَلَى اللَّهِ، وَلَا حَوْلَ وَلَا قُوَّةَ إِلَّا بِاللَّهِ',
+    transliteration: 'Bismillahi, tawakkaltu alAllahi, wa la hawla wa la quwwata illa billah.',
+    english:
+      'In the name of Allah, I place my trust in Allah, and there is no might nor power except with Allah.',
+    urdu: 'اللہ کے نام سے، میں نے اللہ پر بھروسہ کیا، اور نیکی کرنے کی طاقت و برائی سے بچنے کی قوت صرف اللہ ہی کی توفیق سے ہے۔',
+    virtue: 'Angels declare: "You are guided, defended, and protected," and Shaytan retreats (Abu Dawud & Tirmidhi).',
+  },
+  {
+    id: 'dua-enter-home',
+    title: 'Dua When Entering the House',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic:
+      'بِسْمِ اللَّهِ وَلَجْنَا، وَبِسْمِ اللَّهِ خَرَجْنَا، وَعَلَى اللَّهِ رَبِّنَا تَوَكَّلْنَا',
+    transliteration: 'Bismillahi walajna, wa bismillahi kharajna, wa alAllahi Rabbina tawakkalna.',
+    english:
+      'In the name of Allah we enter, in the name of Allah we leave, and upon our Lord we place our trust. Then greet the family with Salam.',
+    urdu: 'اللہ کے نام سے ہم داخل ہوئے اور اللہ کے نام سے نکلے اور اپنے رب اللہ پر ہم نے بھروسہ کیا (پھر گھر والوں کو سلام کریں)۔',
+    virtue: 'Prevents Shaytan from spending the night or sharing meals in your home (Abu Dawud 5096).',
+  },
+  {
+    id: 'dua-for-parents',
+    title: 'Dua for Parents (Mercy & Compassion)',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic: 'رَّبِّ ارْحَمْهُمَا كَمَا رَبَّيَانِي صَغِيرًا',
+    transliteration: 'Rabbir-hamhuma kama rabbayani saghira.',
+    english: 'My Lord, have mercy upon them (my parents) as they brought me up when I was small.',
+    urdu: 'اے میرے رب! ان دونوں (والدین) پر رحم فرما جیسا کہ انہوں نے بچپن میں میری پرورش کی۔',
+    virtue: 'Quranic supplication commanded in Surah Al-Isra (17:24).',
+  },
+  {
+    id: 'dua-righteous-family',
+    title: 'Dua for Righteous Spouse & Children',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic:
+      'رَبَّنَا هَبْ لَنَا مِنْ أَزْوَاجِنَا وَذُرِّيَّاتِنَا قُرَّةَ أَعْيُنٍ وَاجْعَلْنَا لِلْمُتَّقِينَ إِمَامًا',
+    transliteration:
+      'Rabbana hab lana min azwajina wa dhurriyyatina qurrata a’yunin waj’alna lil-muttaqina imama.',
+    english:
+      'Our Lord, grant us from among our spouses and offspring comfort to our eyes, and make us an example for the righteous.',
+    urdu: 'اے ہمارے رب! ہمیں ہماری بیویوں اور اولاد کی طرف سے آنکھوں کی ٹھنڈک عطا فرما اور ہمیں پرہیزگاروں کا پیشوا بنا۔',
+    virtue: 'Quranic supplication of the servants of Ar-Rahman (Surah Al-Furqan 25:74).',
+  },
+  {
+    id: 'dua-mirror',
+    title: 'Dua When Looking in the Mirror',
+    period: 'dua',
+    duaGroup: 'Home & Family',
+    targetCount: 1,
+    arabic: 'اللَّهُمَّ أَنْتَ حَسَّنْتَ خَلْقِي فَحَسِّنْ خُلُقِي',
+    transliteration: 'Allahumma anta hassanta khalqi fa hassin khuluqi.',
+    english: 'O Allah, just as You made my physical form good, make my character good as well.',
+    urdu: 'اے اللہ! جس طرح تو نے میری صورت خوبصورت بنائی ہے اسی طرح میرے اخلاق بھی عمدہ بنا دے۔',
+    virtue: 'Authentic Prophetic supplication (Musnad Ahmad 24392 & Sahih Ibn Hibban).',
+  },
+
+  // Travel & Masjid
+  {
+    id: 'dua-going-masjid',
+    title: 'Dua While Walking to the Masjid',
+    period: 'dua',
+    duaGroup: 'Travel & Masjid',
+    targetCount: 1,
+    arabic:
+      'اللَّهُمَّ اجْعَلْ فِي قَلْبِي نُورًا، وَفِي لِسَانِي نُورًا، وَفِي سَمْعِي نُورًا، وَفِي بَصَرِي نُورًا، وَاجْعَلْ مِنْ خَلْفِي نُورًا وَمِنْ أَمَامِي نُورًا',
+    transliteration:
+      'Allahummaj’al fi qalbi nuran, wa fi lisani nuran, wa fi sam’i nuran, wa fi basari nuran...',
+    english:
+      'O Allah, place light in my heart, light upon my tongue, light in my hearing, light in my sight, light behind me, and light in front of me.',
+    urdu: 'اے اللہ! میرے دل میں نور، میری زبان میں نور، میری سماعت میں نور، میری بصارت میں نور، اور میرے آگے پیچھے نور عطا فرما۔',
+    virtue: 'Recited by the Prophet (SAW) when heading out for Fajr prayer (Sahih Muslim 763).',
+  },
+  {
+    id: 'dua-enter-masjid',
+    title: 'Dua When Entering the Masjid (Right Foot First)',
+    period: 'dua',
+    duaGroup: 'Travel & Masjid',
+    targetCount: 1,
+    arabic: 'اللَّهُمَّ افْتَحْ لِي أَبْوَابَ رَحْمَتِكَ',
+    transliteration: 'Allahummaftah li abwaba rahmatik.',
+    english: 'O Allah, open for me the doors of Your mercy.',
+    urdu: 'اے اللہ! میرے لیے اپنی رحمت کے دروازے کھول دے۔',
+    virtue: 'Sunnah upon stepping into the Masjid after sending Durood (Sahih Muslim 713).',
+  },
+  {
+    id: 'dua-leave-masjid',
+    title: 'Dua When Leaving the Masjid (Left Foot First)',
+    period: 'dua',
+    duaGroup: 'Travel & Masjid',
+    targetCount: 1,
+    arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ مِنْ فَضْلِكَ',
+    transliteration: 'Allahumma inni as’aluka min fadlik.',
+    english: 'O Allah, I ask You from Your bounty and grace.',
+    urdu: 'اے اللہ! میں تجھ سے تیرے فضل کا سوال کرتا ہوں۔',
+    virtue: 'Sunnah when stepping out of the Masjid (Sahih Muslim 713).',
+  },
+  {
+    id: 'dua-after-azaan',
+    title: 'Dua After Hearing the Azaan',
+    period: 'dua',
+    duaGroup: 'Travel & Masjid',
+    targetCount: 1,
+    arabic:
+      'اللَّهُمَّ رَبَّ هَذِهِ الدَّعْوَةِ التَّامَّةِ، وَالصَّلَاةِ الْقَائِمَةِ، آتِ مُحَمَّدًا الْوَسِيلَةَ وَالْفَضِيلَةَ، وَابْعَثْهُ مَقَامًا مَحْمُودًا الَّذِي وَعَدْتَهُ',
+    transliteration:
+      'Allahumma Rabba hadhihid-da’watit-tammah, was-salatil-qa’imah, ati Muhammadanil-wasilata wal-fadilah, wab’ath-hu maqaman mahmudanilladhi wa’adtah.',
+    english:
+      'O Allah, Lord of this perfect call and established prayer, grant Muhammad (SAW) Al-Wasilah and excellence, and raise him to the praised station that You promised him.',
+    urdu: 'اے اللہ! اس مکمل پکار اور قائم ہونے والی نماز کے رب! حضرت محمد ﷺ کو وسیلہ اور فضیلت عطا فرما، اور انہیں مقامِ محمود پر فائز فرما جس کا تو نے ان سے وعدہ فرمایا ہے۔',
+    virtue: 'Guarantees the Prophet’s intercession on the Day of Judgment (Sahih al-Bukhari 614).',
+  },
+  {
+    id: 'dua-travel-vehicle',
+    title: 'Dua When Boarding a Vehicle or Travelling',
+    period: 'dua',
+    duaGroup: 'Travel & Masjid',
+    targetCount: 1,
+    arabic:
+      'سُبْحَانَ الَّذِي سَخَّرَ لَنَا هَذَا وَمَا كُنَّا لَهُ مُقْرِنِينَ ۝ وَإِنَّا إِلَى رَبِّنَا لَمُنقَلِبُونَ',
+    transliteration:
+      'Subhanalladhi sakhkhara lana hadha wa ma kunna lahu muqrinin, wa inna ila Rabbina lamunqalibun.',
+    english:
+      'Glory be to Him who has subjected this to us, for we could never have accomplished it ourselves, and surely to our Lord we shall return.',
+    urdu: 'پاک ہے وہ ذات جس نے اسے ہمارے تابع کر دیا ورنہ ہم اسے قابو کرنے کی طاقت نہ رکھتے تھے، اور بے شک ہمیں اپنے رب ہی کی طرف لوٹ کر جانا ہے۔',
+    virtue: 'Sunnah upon sitting in any car, train, plane, or mount (Surah Az-Zukhruf 43:13–14 & Muslim 1342).',
+  },
+  {
+    id: 'dua-enter-city',
+    title: 'Dua Upon Entering a New Town or City',
+    period: 'dua',
+    duaGroup: 'Travel & Masjid',
+    targetCount: 1,
+    arabic:
+      'اللَّهُمَّ رَبَّ السَّمَاوَاتِ السَّبْعِ وَمَا أَظْلَلْنَ، وَرَبَّ الْأَرَضِينَ السَّبْعِ وَمَا أَقْلَلْنَ، أَسْأَلُكَ خَيْرَ هَذِهِ الْقَرْيَةِ وَخَيْرَ أَهْلِهَا، وَأَعُوذُ بِكَ مِنْ شَرِّهَا وَشَرِّ أَهْلِهَا',
+    transliteration:
+      'Allahumma Rabbas-samawatis-sab’i wa ma azlalna, wa Rabbal-aradinas-sab’i wa ma aqlalna, as’aluka khayra hadhihil-qaryati wa khayra ahliha...',
+    english:
+      'O Allah, Lord of the seven heavens and all they shade, and Lord of the seven earths and all they carry, I ask You for the good of this town and the good of its people, and seek refuge from its evil.',
+    urdu: 'اے ساتوں آسمانوں اور ساتوں زمینوں کے رب! میں تجھ سے اس شہر اور اس کے رہنے والوں کی بھلائی مانگتا ہوں اور اس کے شر سے تیری پناہ مانگتا ہوں۔',
+    virtue: 'Authentic travel Sunnah when arriving in a new town (Nasa’i & Ibn Hibban).',
+  },
+  {
+    id: 'dua-marketplace',
+    title: 'Dua Upon Entering a Market or Shopping Area',
+    period: 'dua',
+    duaGroup: 'Travel & Masjid',
+    targetCount: 1,
+    arabic:
+      'لَا إِلَهَ إِلَّا اللَّهُ وَحْدَهُ لَا شَرِيكَ لَهُ، لَهُ الْمُلْكُ وَلَهُ الْحَمْدُ، يُحْيِي وَيُمِيتُ وَهُوَ حَيٌّ لَا يَمُوتُ، بِيَدِهِ الْخَيْرُ وَهُوَ عَلَى كُلِّ شَيْءٍ قَدِيرٌ',
+    transliteration:
+      'La ilaha illAllahu wahdahu la sharika lah, lahul-mulku wa lahul-hamdu, yuhyi wa yumitu wa Huwa Hayyun la yamut, bi yadihil-khayru wa Huwa ala kulli shay’in Qadir.',
+    english:
+      'None has the right to be worshipped except Allah alone without partner; to Him belongs all sovereignty and praise. He gives life and causes death, and He is Ever-Living and never dies. In His hand is all goodness and He is over all things omnipotent.',
+    urdu: 'اللہ کے سوا کوئی معبود نہیں وہ اکیلا ہے، اسی کی بادشاہی اور حمد ہے، وہی زندہ کرتا اور مارتا ہے اور وہ ہمیشہ زندہ رہنے والا ہے، اسی کے ہاتھ میں خیر ہے اور وہ ہر چیز پر قادر ہے۔',
+    virtue: 'A million good deeds written, a million sins erased, and a house built in Paradise (Tirmidhi 3428).',
+  },
+
+  // Food & Dress
+  {
+    id: 'dua-before-eating',
+    title: 'Dua Before Eating or Drinking',
+    period: 'dua',
+    duaGroup: 'Food & Dress',
+    targetCount: 1,
+    arabic: 'بِسْمِ اللَّهِ وَعَلَى بَرَكَةِ اللَّهِ',
+    transliteration: 'Bismillahi wa ala barakatillah.',
+    english: 'In the name of Allah and upon the blessing of Allah.',
+    urdu: 'اللہ کے نام سے اور اللہ کی برکت کے ساتھ۔',
+    virtue: 'Brings barakah into the meal and keeps Shaytan away (Bukhari & Abu Dawud).',
+  },
+  {
+    id: 'dua-forgot-bismillah',
+    title: 'Dua If You Forget Bismillah Before Eating',
+    period: 'dua',
+    duaGroup: 'Food & Dress',
+    targetCount: 1,
+    arabic: 'بِسْمِ اللَّهِ فِي أَوَّلِهِ وَآخِرِهِ',
+    transliteration: 'Bismillahi fi awwalihi wa akhirihi.',
+    english: 'In the name of Allah at its beginning and at its end.',
+    urdu: 'اس کے شروع اور آخر میں اللہ کا نام لیتا ہوں۔',
+    virtue: 'Causes Shaytan to give up anything he shared of the meal (Abu Dawud 3767 & Tirmidhi 1858).',
+  },
+  {
+    id: 'dua-after-eating',
+    title: 'Dua After Finishing a Meal',
+    period: 'dua',
+    duaGroup: 'Food & Dress',
+    targetCount: 1,
+    arabic:
+      'الْحَمْدُ لِلَّهِ الَّذِي أَطْعَمَنِي هَذَا وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ',
+    transliteration:
+      'Alhamdulillahilladhi at’amani hadha wa razaqanihi min ghayri hawlin minni wa la quwwah.',
+    english:
+      'All praise is due to Allah who has fed me this and provided it for me without any might or power from myself.',
+    urdu: 'تمام تعریفیں اس اللہ کے لیے ہیں جس نے مجھے یہ کھانا کھلایا اور میری کسی طاقت و قوت کے بغیر مجھے یہ رزق عطا فرمایا۔',
+    virtue: 'All previous minor sins are forgiven (Abu Dawud 4023 & Tirmidhi 3458).',
+  },
+  {
+    id: 'dua-drinking-milk',
+    title: 'Dua Upon Drinking Milk',
+    period: 'dua',
+    duaGroup: 'Food & Dress',
+    targetCount: 1,
+    arabic: 'اللَّهُمَّ بَارِكْ لَنَا فِيهِ وَزِدْنَا مِنْهُ',
+    transliteration: 'Allahumma barik lana fihi wa zidna minh.',
+    english: 'O Allah, bless us in it (milk) and grant us more of it.',
+    urdu: 'اے اللہ! ہمارے لیے اس میں برکت عطا فرما اور ہمیں اس میں سے مزید عطا فرما۔',
+    virtue: 'Nothing suffices for both food and drink except milk (Tirmidhi 3455 & Abu Dawud 3730).',
+  },
+  {
+    id: 'dua-for-host',
+    title: 'Dua for Whoever Feeds or Hosts You',
+    period: 'dua',
+    duaGroup: 'Food & Dress',
+    targetCount: 1,
+    arabic: 'اللَّهُمَّ بَارِكْ لَهُمْ فِيمَا رَزَقْتَهُمْ، وَاغْفِرْ لَهُمْ وَارْحَمْهُمْ',
+    transliteration: 'Allahumma barik lahum fima razaqtahum, waghfir lahum warhamhum.',
+    english:
+      'O Allah, bless them in what You have provided them, forgive them, and have mercy upon them.',
+    urdu: 'اے اللہ! جو رزق تو نے انہیں دیا ہے اس میں برکت عطا فرما، ان کی مغفرت فرما اور ان پر رحم فرما۔',
+    virtue: 'Prophetic gratitude prayer taught for dinner hosts (Sahih Muslim 2042).',
+  },
+  {
+    id: 'dua-iftar',
+    title: 'Dua When Breaking the Fast (Iftar)',
+    period: 'dua',
+    duaGroup: 'Food & Dress',
+    targetCount: 1,
+    arabic:
+      'ذَهَبَ الظَّمَأُ وَابْتَلَّتِ الْعُرُوقُ، وَثَبَتَ الْأَجْرُ إِنْ شَاءَ اللَّهُ',
+    transliteration: 'Dhahabaz-zama’u wabtallatil-uruqu, wa thabatal-ajru in sha Allah.',
+    english:
+      'The thirst has vanished, the veins have been moistened, and the reward is assured, if Allah wills.',
+    urdu: 'پیاس بجھ گئی، رگیں تر ہو گئیں اور ان شاء اللہ ثواب ثابت ہو گیا۔',
+    virtue: 'Recited right after breaking fast with dates or water (Sunan Abi Dawud 2357).',
+  },
+  {
+    id: 'dua-wearing-clothes',
+    title: 'Dua When Wearing a Garment / New Clothes',
+    period: 'dua',
+    duaGroup: 'Food & Dress',
+    targetCount: 1,
+    arabic:
+      'الْحَمْدُ لِلَّهِ الَّذِي كَسَانِي هَذَا (الثَّوْبَ) وَرَزَقَنِيهِ مِنْ غَيْرِ حَوْلٍ مِنِّي وَلَا قُوَّةٍ',
+    transliteration:
+      'Alhamdulillahilladhi kasani hadha (ath-thawba) wa razaqanihi min ghayri hawlin minni wa la quwwah.',
+    english:
+      'All praise is for Allah who has clothed me with this garment and provided it for me without any might or power from me.',
+    urdu: 'تمام تعریفیں اس اللہ کے لیے ہیں جس نے مجھے یہ لباس پہنایا اور میری کسی طاقت و قوت کے بغیر مجھے عطا فرمایا۔',
+    virtue: 'Previous sins are forgiven upon thanking Allah for clothing (Abu Dawud 4023).',
+  },
+
+  // Distress, Weather & Istikhara
+  {
+    id: 'dua-distress',
+    title: 'Dua During Grief, Anxiety or Distress',
+    period: 'dua',
+    duaGroup: 'Distress & Istikhara',
+    targetCount: 1,
+    arabic:
+      'اللَّهُمَّ إِنِّي أَعُوذُ بِكَ مِنَ الْهَمِّ وَالْحَزَنِ، وَالْعَجْزِ وَالْكَسَلِ، وَالْبُخْلِ وَالْجُبْنِ، وَضَلَعِ الدَّيْنِ وَغَلَبَةِ الرِّجَالِ',
+    transliteration:
+      'Allahumma inni a’udhu bika minal-hammi wal-hazan, wal-ajzi wal-kasal, wal-bukhli wal-jubn, wa dala’id-dayni wa ghalabatir-rijal.',
+    english:
+      'O Allah, I seek refuge in You from worry and grief, helplessness and laziness, stinginess and cowardice, and from being overwhelmed by debt and overpowered by people.',
+    urdu: 'اے اللہ! میں فکر و غم، عاجزی و سستی، بخل و بزدلی، قرض کے بوجھ اور لوگوں کے غلبے سے تیری پناہ مانگتا ہوں۔',
+    virtue: 'Frequently recited by the Prophet (SAW) for relief from anxiety and debt (Bukhari 6369).',
+  },
+  {
+    id: 'dua-yunus',
+    title: 'Dua of Prophet Yunus (AS) in Hardship',
+    period: 'dua',
+    duaGroup: 'Distress & Istikhara',
+    targetCount: 3,
+    arabic: 'لَا إِلَهَ إِلَّا أَنْتَ سُبْحَانَكَ إِنِّي كُنْتُ مِنَ الظَّالِمِينَ',
+    transliteration: 'La ilaha illa Anta subhanaka inni kuntu minaz-zalimin.',
+    english:
+      'There is no deity worthy of worship except You; exalted are You! Indeed, I have been of the wrongdoers.',
+    urdu: 'تیرے سوا کوئی معبود نہیں، تو پاک ہے، بے شک میں ہی قصورواروں میں سے تھا۔',
+    virtue: 'No Muslim calls upon Allah with this in any distress except that Allah answers him (Tirmidhi 3505).',
+  },
+  {
+    id: 'dua-ease-difficulty',
+    title: 'Dua When Facing a Difficult Task',
+    period: 'dua',
+    duaGroup: 'Distress & Istikhara',
+    targetCount: 1,
+    arabic:
+      'اللَّهُمَّ لَا سَهْلَ إِلَّا مَا جَعَلْتَهُ سَهْلًا، وَأَنْتَ تَجْعَلُ الْحَزْنَ إِذَا شِئْتَ سَهْلًا',
+    transliteration: 'Allahumma la sahla illa ma ja’altahu sahla, wa Anta taj’alul-hazna idha shi’ta sahla.',
+    english:
+      'O Allah, there is no ease except in what You have made easy, and You make the difficulty easy whenever You will.',
+    urdu: 'اے اللہ! کوئی کام آسان نہیں مگر جسے تو آسان کر دے، اور تو جب چاہے مشکل کو آسان بنا دیتا ہے۔',
+    virtue: 'Authentic dua for exams, work challenges, and obstacles (Ibn Hibban 974).',
+  },
+  {
+    id: 'dua-pay-debt',
+    title: 'Dua for Lawful Provision & Paying Off Debt',
+    period: 'dua',
+    duaGroup: 'Distress & Istikhara',
+    targetCount: 3,
+    arabic:
+      'اللَّهُمَّ اكْفِنِي بِحَلَالِكَ عَنْ حَرَامِكَ، وَأَغْنِنِي بِفَضْلِكَ عَمَّنْ سِوَاكَ',
+    transliteration: 'Allahummak-fini bi halalika an haramika, wa aghnini bi fadlika amman siwak.',
+    english:
+      'O Allah, suffice me with Your lawful provision against what You have forbidden, and enrich me by Your grace so I need none besides You.',
+    urdu: 'اے اللہ! مجھے اپنے حلال رزق کے ذریعے حرام سے بے نیاز کر دے اور اپنے فضل سے اپنے سوا ہر کسی سے مستغنی کر دے۔',
+    virtue: 'Even if your debt is like a mountain, Allah will settle it for you (Sunan at-Tirmidhi 3563).',
+  },
+  {
+    id: 'dua-istikhara',
+    title: 'Dua-e-Istikhara (Seeking Allah’s Guidance)',
+    period: 'dua',
+    duaGroup: 'Distress & Istikhara',
+    targetCount: 1,
+    arabic:
+      'اللَّهُمَّ إِنِّي أَسْتَخِيرُكَ بِعِلْمِكَ، وَأَسْتَقْدِرُكَ بِقُدْرَتِكَ، وَأَسْأَلُكَ مِنْ فَضْلِكَ الْعَظِيمِ، فَإِنَّكَ تَقْدِرُ وَلَا أَقْدِرُ، وَتَعْلَمُ وَلَا أَعْلَمُ، وَأَنْتَ عَلَّامُ الْغُيُوبِ',
+    transliteration:
+      'Allahumma inni astakhiruka bi ilmika, wa astaqdiruka bi qudratika, wa as’aluka min fadlikal-azim, fa innaka taqdiru wa la aqdir, wa ta’lamu wa la a’lam, wa Anta Allamul-ghuyub...',
+    english:
+      'O Allah, I seek Your guidance by virtue of Your knowledge and seek ability by Your power, and I ask You of Your great bounty. For surely You have power and I do not; You know and I do not; and You are the Knower of the unseen.',
+    urdu: 'اے اللہ! میں تجھ سے تیرے علم کے واسطے سے خیر طلب کرتا ہوں اور تیری قدرت سے طاقت مانگتا ہوں، بے شک تو قادر ہے اور میں عاجز ہوں، تو جانتا ہے اور میں نہیں جانتا اور تو غیبوں کا جاننے والا ہے۔',
+    virtue: 'Taught by the Prophet (SAW) for every important life decision after two rakats (Bukhari 1162).',
+  },
+  {
+    id: 'dua-rain',
+    title: 'Dua When It Rains',
+    period: 'dua',
+    duaGroup: 'Distress & Istikhara',
+    targetCount: 1,
+    arabic: 'اللَّهُمَّ صَيِّبًا نَافِعًا',
+    transliteration: 'Allahumma sayyiban nafi’an.',
+    english: 'O Allah, make it a beneficial, wholesome rain.',
+    urdu: 'اے اللہ! اسے نفع بخش بارش بنا دے۔',
+    virtue: 'Rain is a blessed time when duas are readily accepted (Sahih al-Bukhari 1032).',
+  },
+  {
+    id: 'dua-crescent',
+    title: 'Dua Upon Sighting the New Crescent Moon',
+    period: 'dua',
+    duaGroup: 'Distress & Istikhara',
+    targetCount: 1,
+    arabic:
+      'اللَّهُمَّ أَهِلَّهُ عَلَيْنَا بِالْأَمْنِ وَالْإِيمَانِ، وَالسَّلَامَةِ وَالْإِسْلَامِ، رَبِّي وَرَبُّكَ اللَّهُ',
+    transliteration:
+      'Allahumma ahillahu alayna bil-amni wal-iman, was-salamati wal-Islam, Rabbi wa RabbukAllah.',
+    english:
+      'O Allah, bring this crescent upon us with security and faith, safety and Islam. My Lord and your Lord (O moon) is Allah.',
+    urdu: 'اے اللہ! یہ نیا چاند ہم پر امن و ایمان اور سلامتی و اسلام کے ساتھ طلوع فرما، (اے چاند) میرا اور تیرا رب اللہ ہے۔',
+    virtue: 'Recited at the start of every lunar month including Ramadan (Sunan at-Tirmidhi 3451).',
+  },
+  {
+    id: 'dua-visiting-sick',
+    title: 'Dua When Visiting a Sick Person',
+    period: 'dua',
+    duaGroup: 'Distress & Istikhara',
+    targetCount: 1,
+    arabic: 'لَا بَأْسَ طَهُورٌ إِنْ شَاءَ اللَّهُ',
+    transliteration: 'La ba’sa tahurun in sha Allah.',
+    english: 'No harm; may it be a purification (from sins), if Allah wills.',
+    urdu: 'کوئی حرج نہیں، ان شاء اللہ یہ بیماری گناہوں سے پاکی کا باعث ہوگی۔',
+    virtue: 'Comforting Sunnah upon visiting anyone who is unwell (Sahih al-Bukhari 3616).',
+  },
+  {
+    id: 'dua-calamity-loss',
+    title: 'Dua Upon Receiving News of Loss or Bereavement',
+    period: 'dua',
+    duaGroup: 'Distress & Istikhara',
+    targetCount: 1,
+    arabic:
+      'إِنَّا لِلَّهِ وَإِنَّا إِلَيْهِ رَاجِعُونَ، اللَّهُمَّ أْجُرْنِي فِي مُصِيبَتِي وَأَخْلِفْ لِي خَيْرًا مِنْهَا',
+    transliteration:
+      'Inna lillahi wa inna ilayhi raji’un, Allahumma-jurni fi musibati wa akhlif li khayran minha.',
+    english:
+      'Indeed, to Allah we belong and to Him we shall return. O Allah, reward me in my affliction and replace it for me with something better.',
+    urdu: 'ہم اللہ ہی کے ہیں اور اسی کی طرف لوٹنے والے ہیں؛ اے اللہ! مجھے میری مصیبت میں اجر عطا فرما اور اس کے بدلے مجھے اس سے بہتر نعمت عطا فرما۔',
+    virtue: 'Allah rewards the believer and grants something better in its place (Sahih Muslim 918).',
+  },
+
+  // Forgiveness & Guidance
+  {
+    id: 'dua-rabbana-atina',
+    title: 'Comprehensive Dua for This World & Hereafter',
+    period: 'dua',
+    duaGroup: 'Forgiveness & Guidance',
+    targetCount: 1,
+    arabic:
+      'رَبَّنَا آتِنَا فِي الدُّنْيَا حَسَنَةً وَفِي الْآخِرَةِ حَسَنَةً وَقِنَا عَذَابَ النَّارِ',
+    transliteration: 'Rabbana atina fid-dunya hasanatan wa fil-akhirati hasanatan wa qina adhaban-nar.',
+    english:
+      'Our Lord, grant us good in this world and good in the Hereafter, and protect us from the punishment of the Fire.',
+    urdu: 'اے ہمارے رب! ہمیں دنیا میں بھی بھلائی عطا فرما اور آخرت میں بھی بھلائی عطا فرما اور ہمیں آگ کے عذاب سے بچا۔',
+    virtue: 'The most frequent supplication of the Prophet Muhammad (SAW) (Bukhari 6389 & Muslim 2690).',
+  },
+  {
+    id: 'dua-steadfast-heart',
+    title: 'Dua for Steadfastness of Heart on Deen',
+    period: 'dua',
+    duaGroup: 'Forgiveness & Guidance',
+    targetCount: 3,
+    arabic: 'يَا مُقَلِّبَ الْقُلُوبِ ثَبِّتْ قَلْبِي عَلَى دِينِكَ',
+    transliteration: 'Ya Muqallibal-qulub, thabbit qalbi ala dinik.',
+    english: 'O Turner of the hearts, keep my heart firm upon Your religion.',
+    urdu: 'اے دلوں کو پھیرنے والے! میرے دل کو اپنے دین پر ثابت قدم رکھ۔',
+    virtue: 'Most frequently spoken dua by the Prophet (SAW) (Sunan at-Tirmidhi 2140).',
+  },
+  {
+    id: 'dua-laylatul-qadr',
+    title: 'Dua for Allah’s Pardon (Afuwwun)',
+    period: 'dua',
+    duaGroup: 'Forgiveness & Guidance',
+    targetCount: 3,
+    arabic: 'اللَّهُمَّ إِنَّكَ عَفُوٌّ تُحِبُّ الْعَفْوَ فَاعْفُ عَنِّي',
+    transliteration: 'Allahumma innaka Afuwwun tuhibbul-afwa fa’fu anni.',
+    english: 'O Allah, You are Most Pardoning and You love to pardon, so pardon me.',
+    urdu: 'اے اللہ! بے شک تو بہت معاف فرمانے والا ہے اور معافی کو پسند فرماتا ہے، پس مجھے معاف فرما دے۔',
+    virtue: 'Taught by the Prophet (SAW) to Aishah (RA) for Laylatul Qadr and daily nights (Tirmidhi 3513).',
+  },
+  {
+    id: 'dua-kaffarah-majlis',
+    title: 'Dua at the End of a Gathering (Kaffarah Majlis)',
+    period: 'dua',
+    duaGroup: 'Forgiveness & Guidance',
+    targetCount: 1,
+    arabic:
+      'سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ، أَشْهَدُ أَنْ لَا إِلَهَ إِلَّا أَنْتَ، أَسْتَغْفِرُكَ وَأَتُوبُ إِلَيْكَ',
+    transliteration:
+      'SubhanakAllahumma wa bihamdika, ash-hadu an la ilaha illa Anta, astaghfiruka wa atubu ilayk.',
+    english:
+      'Glory be to You, O Allah, and praise be to You. I bear witness that none has the right to be worshipped except You; I seek Your forgiveness and turn to You in repentance.',
+    urdu: 'اے اللہ! تو اپنی حمد کے ساتھ پاک ہے، میں گواہی دیتا ہوں کہ تیرے سوا کوئی معبود نہیں، میں تجھ سے بخشش مانگتا ہوں اور تیری طرف توبہ کرتا ہوں۔',
+    virtue: 'Expiates whatever slipped in a conversation or gathering (Tirmidhi 3433).',
+  },
+  {
+    id: 'dua-knowledge',
+    title: 'Dua for Increase in Sacred Knowledge',
+    period: 'dua',
+    duaGroup: 'Forgiveness & Guidance',
+    targetCount: 1,
+    arabic: 'رَّبِّ زِدْنِي عِلْمًا',
+    transliteration: 'Rabbi zidni ilma.',
+    english: 'My Lord, increase me in knowledge.',
+    urdu: 'اے میرے رب! میرے علم میں اضافہ فرما۔',
+    virtue: 'Quranic prayer commanded directly to the Prophet (SAW) (Surah Taha 20:114).',
+  },
+  {
+    id: 'dua-sneezing',
+    title: 'Sunnah Upon Sneezing & Replying',
+    period: 'dua',
+    duaGroup: 'Forgiveness & Guidance',
+    targetCount: 1,
+    arabic:
+      'الْحَمْدُ لِلَّهِ ۝ يَرْحَمُكَ اللَّهُ ۝ يَهْدِيكُمُ اللَّهُ وَيُصْلِحُ بَالَكُمْ',
+    transliteration:
+      'Alhamdulillah (Sneezer) · YarhamukAllah (Listener) · Yahdikumullahu wa yuslihu balakum (Reply)',
+    english:
+      'All praise is for Allah (sneezer) · May Allah have mercy on you (listener) · May Allah guide you and rectify your affairs (reply).',
+    urdu: 'تمام تعریفیں اللہ کے لیے ہیں (چھینکنے والا) · اللہ تم پر رحم فرمائے (سننے والا) · اللہ تمہیں ہدایت دے اور تمہارا حال درست فرمائے (جواب)۔',
+    virtue: 'Teaches mutual love and blessing in daily Muslim interactions (Sahih al-Bukhari 6224).',
+  },
+  {
+    id: 'dua-guidance-taqwa',
+    title: 'Dua for Guidance, Piety & Self-Sufficiency',
+    period: 'dua',
+    duaGroup: 'Forgiveness & Guidance',
+    targetCount: 1,
+    arabic: 'اللَّهُمَّ إِنِّي أَسْأَلُكَ الْهُدَى وَالتُّقَى وَالْعَفَافَ وَالْغِنَى',
+    transliteration: 'Allahumma inni as’alukal-huda wat-tuqa wal-afafa wal-ghina.',
+    english:
+      'O Allah, I ask You for guidance, God-consciousness (Taqwa), chastity/modesty, and contentment.',
+    urdu: 'اے اللہ! میں تجھ سے ہدایت، تقویٰ، پاکدامنی اور دل کی غنا (بے نیازی) مانگتا ہوں۔',
+    virtue: 'Comprehensive prophetic dua covering spiritual and worldly well-being (Sahih Muslim 2721).',
   },
 ];

@@ -77,6 +77,20 @@ export default defineConfig(() => {
                 },
               },
             },
+            {
+              urlPattern: /\/data\/hadith\/.*\.json$/i,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'hadith-chapters-cache',
+                expiration: {
+                  maxEntries: 20,
+                  maxAgeSeconds: 60 * 60 * 24 * 30,
+                },
+                cacheableResponse: {
+                  statuses: [0, 200],
+                },
+              },
+            },
           ],
         },
         devOptions: {

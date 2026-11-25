@@ -40,6 +40,11 @@ import {
   stopAzaanAudio,
 } from './utils/azaanAudio';
 import { vibrateAndroid } from './utils/haptics';
+import {
+  applyThemeColor,
+  getSavedThemeColor,
+  type ThemeColorId,
+} from './utils/themeColors';
 
 type AppTab = 'today' | 'quran' | 'hadees' | 'azkaar' | 'history';
 
@@ -79,6 +84,7 @@ export default function App() {
   );
   const [summaryOpen, setSummaryOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [themeColor, setThemeColor] = useState<ThemeColorId>(() => getSavedThemeColor());
 
   const [activeReminder, setActiveReminder] = useState<ActiveReminder | null>(null);
   const [isPlayingAzaan, setIsPlayingAzaan] = useState(false);
@@ -89,6 +95,10 @@ export default function App() {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
   }, [darkMode]);
+
+  useEffect(() => {
+    applyThemeColor(themeColor);
+  }, [themeColor]);
 
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, (user) => {
@@ -364,7 +374,7 @@ export default function App() {
   if (!authReady) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#F8F7F4] dark:bg-[#0B1210]">
-        <div className="w-8 h-8 rounded-full border-2 border-[#0D5C46] border-t-transparent animate-spin" />
+        <div className="w-8 h-8 rounded-full border-2 border-brand border-t-transparent animate-spin" />
       </div>
     );
   }
@@ -413,7 +423,7 @@ export default function App() {
               {darkMode ? (
                 <Sun className="w-4 h-4 text-[#B4833E]" />
               ) : (
-                <Moon className="w-4 h-4 text-[#0D5C46]" />
+                <Moon className="w-4 h-4 text-brand" />
               )}
             </button>
           </div>
@@ -439,7 +449,7 @@ export default function App() {
 
           {!profile || !dailyLog ? (
             <div className="py-24 flex flex-col items-center justify-center gap-3 text-sm text-[#6B7570]">
-              <div className="w-8 h-8 rounded-full border-2 border-[#0D5C46] border-t-transparent animate-spin" />
+              <div className="w-8 h-8 rounded-full border-2 border-brand border-t-transparent animate-spin" />
               <span>Loading your routine...</span>
             </div>
           ) : (
@@ -497,6 +507,8 @@ export default function App() {
                   <HistoryProfileView
                     profile={profile}
                     history={history}
+                    themeColor={themeColor}
+                    onChangeThemeColor={setThemeColor}
                     onSaveProfile={handleSaveProfile}
                     onSelectHistoryDate={(date) => {
                       setSelectedDate(date);
@@ -544,13 +556,13 @@ export default function App() {
                     <motion.span
                       layoutId="bottom-nav-pill"
                       transition={{ type: 'spring', stiffness: 450, damping: 32 }}
-                      className="absolute inset-0 rounded-full bg-gradient-to-r from-[#0D5C46]/20 to-[#0F766E]/20 dark:from-[#34D399]/25 dark:to-[#2DD4BF]/20"
+                      className="absolute inset-0 rounded-full bg-gradient-to-r from-brand/20 to-brand-to/20 dark:from-brand-dark/25 dark:to-brand-urdu/20"
                     />
                   )}
                   <Icon
                     className={`w-5 h-5 relative z-10 transition-colors ${
                       active
-                        ? 'text-[#0D5C46] dark:text-[#34D399]'
+                        ? 'text-brand dark:text-brand-dark'
                         : 'text-[#6B7570] dark:text-[#8A9690]'
                     }`}
                   />
@@ -558,7 +570,7 @@ export default function App() {
                 <span
                   className={`text-[10px] tracking-tight transition-colors ${
                     active
-                      ? 'font-semibold text-[#0D5C46] dark:text-[#34D399]'
+                      ? 'font-semibold text-brand dark:text-brand-dark'
                       : 'font-medium text-[#6B7570] dark:text-[#8A9690]'
                   }`}
                 >

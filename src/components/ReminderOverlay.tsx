@@ -57,7 +57,7 @@ export function ReminderOverlay({
 
             <div className="flex items-start justify-between gap-4">
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-2xl bg-[#0D5C46]/10 dark:bg-[#34D399]/15 text-[#0D5C46] dark:text-[#34D399] flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-2xl bg-brand/10 dark:bg-brand-dark/15 text-brand dark:text-brand-dark flex items-center justify-center shrink-0">
                   {reminder.type === 'sleep' ? (
                     <Moon className="w-5 h-5" />
                   ) : (
@@ -122,7 +122,7 @@ export function ReminderOverlay({
                     onMarkPrayerDone(reminder.prayerKey!);
                     onDismiss();
                   }}
-                  className="w-full min-h-[46px] px-4 py-2.5 rounded-xl bg-[#0D5C46] hover:bg-[#094635] text-white text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full min-h-[46px] px-4 py-2.5 rounded-xl bg-brand hover:opacity-95 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
                   <Check className="w-4 h-4" />
                   <span>Mark {reminder.prayerKey.toUpperCase()} Offered</span>
@@ -136,7 +136,7 @@ export function ReminderOverlay({
                     onOpenAzkaar(reminder.id.includes('morning') ? 'morning' : 'evening');
                     onDismiss();
                   }}
-                  className="w-full min-h-[46px] px-4 py-2.5 rounded-xl bg-[#0D5C46] hover:bg-[#094635] text-white text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full min-h-[46px] px-4 py-2.5 rounded-xl bg-brand hover:opacity-95 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
                   <Volume2 className="w-4 h-4" />
                   <span>Open Azkaar Companion</span>
@@ -150,7 +150,7 @@ export function ReminderOverlay({
                     onOpenSleepSubmit();
                     onDismiss();
                   }}
-                  className="w-full min-h-[46px] px-4 py-2.5 rounded-xl bg-[#0D5C46] hover:bg-[#094635] text-white text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                  className="w-full min-h-[46px] px-4 py-2.5 rounded-xl bg-brand hover:opacity-95 text-white text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
                 >
                   <Moon className="w-4 h-4" />
                   <span>Review & Submit Day Honestly</span>

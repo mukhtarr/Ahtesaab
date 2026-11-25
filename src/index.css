@@ -1,6 +1,20 @@
 @import "tailwindcss";
 @custom-variant dark (&:where(.dark, .dark *));
 
+:root {
+  --theme-primary: #0D5C46;
+  --theme-primary-to: #0F766E;
+  --theme-primary-dark: #34D399;
+  --theme-urdu-dark: #6EE7B7;
+}
+
+@theme inline {
+  --color-brand: var(--theme-primary);
+  --color-brand-to: var(--theme-primary-to);
+  --color-brand-dark: var(--theme-primary-dark);
+  --color-brand-urdu: var(--theme-urdu-dark);
+}
+
 @theme {
   --font-display: "Fraunces", Georgia, serif;
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;

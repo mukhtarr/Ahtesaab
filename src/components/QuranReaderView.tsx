@@ -115,7 +115,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
     <div className="space-y-4 pb-24">
       {/* Illuminated Colorful Header & 114-Surah Selector */}
       <section className="rounded-3xl bg-white dark:bg-[#121E1A] border border-[#E5E2DC] dark:border-[#1E2E28] overflow-hidden shadow-sm">
-        <div className="bg-gradient-to-br from-[#0D5C46] via-[#0F766E] to-[#B4833E] text-white p-4 space-y-3">
+        <div className="bg-gradient-to-br from-brand via-brand-to to-[#B4833E] text-white p-4 space-y-3">
           <div className="flex items-center justify-between gap-3">
             <div>
               <p className="text-[11px] font-medium text-amber-100/95">
@@ -156,7 +156,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
                     setRevelationFilter(tab.id);
                   }}
                   className={`relative min-h-[36px] rounded-xl text-[11px] font-semibold transition-colors cursor-pointer whitespace-nowrap ${
-                    active ? 'text-[#0D5C46]' : 'text-white/85'
+                    active ? 'text-brand' : 'text-white/85'
                   }`}
                 >
                   {active && (
@@ -181,7 +181,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search by number (e.g. 36), name, or meaning..."
-              className="w-full min-h-[44px] pl-10 pr-3.5 rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] text-sm focus:outline-none focus:ring-2 focus:ring-[#0D5C46]"
+              className="w-full min-h-[44px] pl-10 pr-3.5 rounded-2xl bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] text-sm focus:outline-none focus:ring-2 focus:ring-brand"
             />
           </div>
 
@@ -196,8 +196,8 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
                   onClick={() => handleSelectSurah(surah.id)}
                   className={`min-h-[46px] px-3.5 py-2 rounded-2xl text-left flex items-center gap-2 shrink-0 transition-colors cursor-pointer ${
                     active
-                      ? 'bg-gradient-to-r from-[#0D5C46] to-[#0F766E] text-white shadow-sm'
-                      : 'bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] hover:border-[#0D5C46]/40'
+                      ? 'bg-gradient-to-r from-brand to-brand-to text-white shadow-sm'
+                      : 'bg-[#F8F7F4] dark:bg-[#0D1714] border border-[#E5E2DC] dark:border-[#1E2E28] hover:border-brand/40'
                   }`}
                 >
                   <span className="text-xs font-semibold tabular-nums whitespace-nowrap">
@@ -231,7 +231,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
           <div className="space-y-3 pb-4 border-b border-[#EFECE6] dark:border-[#1E2E28]">
             <div className="flex items-center justify-between gap-2">
               <div className="min-w-0">
-                <p className="text-[11px] font-medium text-[#0F766E] dark:text-[#5EEAD4] tabular-nums">
+                <p className="text-[11px] font-medium text-brand-to dark:text-brand-urdu tabular-nums">
                   Surah {activeSurah.id} of 114 · {activeSurah.revelation} ·{' '}
                   {activeSurah.totalAyahs} Ayahs · Juz {activeSurah.juz}
                 </p>
@@ -242,7 +242,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
                   {activeSurah.meaning}
                 </p>
               </div>
-              <span className="font-[family-name:var(--font-arabic)] text-2xl text-[#0D5C46] dark:text-[#34D399] shrink-0">
+              <span className="font-[family-name:var(--font-arabic)] text-2xl text-brand dark:text-brand-dark shrink-0">
                 سورة {activeSurah.nameArabic}
               </span>
             </div>
@@ -250,7 +250,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
             <motion.button
               whileTap={{ scale: 0.97 }}
               onClick={() => void handleLogPage()}
-              className="w-full min-h-[46px] px-4 rounded-2xl bg-gradient-to-r from-[#0D5C46] via-[#0F766E] to-[#115E59] text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-md shadow-[#0D5C46]/20 cursor-pointer"
+              className="w-full min-h-[46px] px-4 rounded-2xl bg-gradient-to-r from-brand via-brand-to to-brand-to text-white text-xs font-semibold flex items-center justify-center gap-2 shadow-md shadow-brand/20 cursor-pointer"
             >
               {justLogged ? <Check className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
               <span>
@@ -298,8 +298,8 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
           </div>
 
           {activeSurah.id !== 1 && activeSurah.id !== 9 && (
-            <div className="py-3 px-4 rounded-2xl bg-gradient-to-r from-[#0D5C46]/8 via-[#B4833E]/10 to-[#0F766E]/8 border border-[#E5E2DC] dark:border-[#1E2E28] text-center">
-              <p className="font-arabic text-2xl text-[#0D5C46] dark:text-[#6EE7B7]">
+            <div className="py-3 px-4 rounded-2xl bg-gradient-to-r from-brand/8 via-[#B4833E]/10 to-brand-to/8 border border-[#E5E2DC] dark:border-[#1E2E28] text-center">
+              <p className="font-arabic text-2xl text-brand dark:text-brand-urdu">
                 بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
               </p>
             </div>
@@ -307,7 +307,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
 
           {loadingSurah && ayahs.length === 0 ? (
             <div className="py-12 flex flex-col items-center justify-center gap-2.5 text-xs text-[#6B7570]">
-              <Loader2 className="w-6 h-6 animate-spin text-[#0D5C46] dark:text-[#34D399]" />
+              <Loader2 className="w-6 h-6 animate-spin text-brand dark:text-brand-dark" />
               <span>Loading Surah {activeSurah.nameEnglish} ({activeSurah.totalAyahs} Ayahs)...</span>
             </div>
           ) : loadError && ayahs.length === 0 ? (
@@ -315,7 +315,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
               <p className="text-xs text-amber-900 dark:text-amber-200">{loadError}</p>
               <button
                 onClick={() => setReloadNonce((n) => n + 1)}
-                className="min-h-[40px] px-4 rounded-xl bg-[#0D5C46] text-white text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer"
+                className="min-h-[40px] px-4 rounded-xl bg-brand text-white text-xs font-semibold inline-flex items-center gap-1.5 cursor-pointer"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>Retry Loading Surah</span>
@@ -324,7 +324,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
           ) : (
             <div className="divide-y divide-[#EFECE6] dark:divide-[#1E2E28]">
               {loadingSurah && (
-                <div className="pb-3 flex items-center gap-2 text-[11px] text-[#0F766E] dark:text-[#5EEAD4]">
+                <div className="pb-3 flex items-center gap-2 text-[11px] text-brand-to dark:text-brand-urdu">
                   <Loader2 className="w-3.5 h-3.5 animate-spin" />
                   <span>Syncing full Surah translation...</span>
                 </div>
@@ -332,7 +332,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
               {ayahs.map((ayah) => (
                 <article key={ayah.number} className="py-5 first:pt-1 last:pb-1 space-y-3">
                   <div className="flex items-start justify-between gap-3">
-                    <span className="w-8 h-8 rounded-full bg-gradient-to-br from-[#0D5C46]/12 to-[#B4833E]/15 border border-[#0D5C46]/25 dark:border-[#34D399]/30 text-[11px] font-bold text-[#0D5C46] dark:text-[#34D399] tabular-nums flex items-center justify-center shrink-0 mt-1">
+                    <span className="w-8 h-8 rounded-full bg-gradient-to-br from-brand/12 to-[#B4833E]/15 border border-brand/25 dark:border-brand-dark/30 text-[11px] font-bold text-brand dark:text-brand-dark tabular-nums flex items-center justify-center shrink-0 mt-1">
                       {ayah.number}
                     </span>
                     <p className="font-arabic text-2xl text-right text-[#141A17] dark:text-[#F3F4F1] leading-[2.15] flex-1">
@@ -341,7 +341,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
                   </div>
 
                   {(translationMode === 'both' || translationMode === 'urdu') && ayah.urdu && (
-                    <p className="font-urdu text-base text-right text-[#0D5C46] dark:text-[#6EE7B7] leading-[1.95]">
+                    <p className="font-urdu text-base text-right text-brand dark:text-brand-urdu leading-[1.95]">
                       {ayah.urdu}
                     </p>
                   )}
@@ -371,7 +371,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
               whileTap={{ scale: 0.96 }}
               disabled={activeSurah.id >= 114}
               onClick={() => handleSelectSurah(Math.min(114, activeSurah.id + 1))}
-              className="min-h-[44px] px-3 rounded-2xl bg-[#0D5C46] text-white text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-40"
+              className="min-h-[44px] px-3 rounded-2xl bg-brand text-white text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer disabled:opacity-40"
             >
               <span>Next Surah</span>
               <ChevronRight className="w-4 h-4" />
@@ -396,7 +396,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
               transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
               className="w-full max-w-[460px] max-h-[86vh] flex flex-col bg-white dark:bg-[#121E1A] rounded-t-3xl border-t border-[#E5E2DC] dark:border-[#1E2E28] overflow-hidden shadow-2xl"
             >
-              <div className="p-4 bg-gradient-to-r from-[#0D5C46] to-[#0F766E] text-white flex items-center justify-between gap-3">
+              <div className="p-4 bg-gradient-to-r from-brand to-brand-to text-white flex items-center justify-between gap-3">
                 <div className="flex items-center gap-2.5">
                   <BookOpen className="w-5 h-5 text-amber-200" />
                   <div>
@@ -436,7 +436,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
                       onClick={() => handleSelectSurah(surah.id)}
                       className={`w-full min-h-[58px] px-3.5 py-2.5 rounded-2xl border text-left flex items-center justify-between gap-3 cursor-pointer transition-colors ${
                         active
-                          ? 'bg-[#0D5C46]/12 dark:bg-[#34D399]/15 border-[#0D5C46] dark:border-[#34D399]'
+                          ? 'bg-brand/12 dark:bg-brand-dark/15 border-brand dark:border-brand-dark'
                           : 'bg-[#F8F7F4] dark:bg-[#0D1714] border-[#E5E2DC] dark:border-[#1E2E28]'
                       }`}
                     >
@@ -444,8 +444,8 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
                         <span
                           className={`w-8 h-8 rounded-xl text-xs font-bold tabular-nums flex items-center justify-center shrink-0 ${
                             active
-                              ? 'bg-[#0D5C46] text-white'
-                              : 'bg-white dark:bg-[#162620] text-[#0D5C46] dark:text-[#34D399] border border-[#E5E2DC] dark:border-[#1E2E28]'
+                              ? 'bg-brand text-white'
+                              : 'bg-white dark:bg-[#162620] text-brand dark:text-brand-dark border border-[#E5E2DC] dark:border-[#1E2E28]'
                           }`}
                         >
                           {surah.id}
@@ -459,7 +459,7 @@ export function QuranReaderView({ todayLog, onLogQuranPage }: QuranReaderViewPro
                           </p>
                         </div>
                       </div>
-                      <span className="font-[family-name:var(--font-arabic)] text-lg text-[#0D5C46] dark:text-[#34D399] shrink-0">
+                      <span className="font-[family-name:var(--font-arabic)] text-lg text-brand dark:text-brand-dark shrink-0">
                         {surah.nameArabic}
                       </span>
                     </button>

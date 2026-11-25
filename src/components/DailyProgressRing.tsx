@@ -125,7 +125,7 @@ export function DailyProgressRing({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
       aria-label="Daily task completion snapshot"
-      className="rounded-3xl bg-gradient-to-br from-[#0D5C46] via-[#0F766E] to-[#115E59] text-white p-4 sm:p-5 space-y-4 shadow-lg shadow-[#0D5C46]/25"
+      className="rounded-3xl bg-gradient-to-br from-brand via-brand-to to-brand-to text-white p-4 sm:p-5 space-y-4 shadow-lg shadow-brand/25"
     >
       <div className="flex items-center justify-between gap-4">
         {/* Multi-Stop Animated SVG Progress Ring */}
@@ -147,7 +147,7 @@ export function DailyProgressRing({
             <defs>
               <linearGradient id="noorRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
                 <stop offset="0%" stopColor="#FDE68A" />
-                <stop offset="50%" stopColor="#6EE7B7" />
+                <stop offset="50%" stopColor="var(--theme-urdu-dark)" />
                 <stop offset="100%" stopColor="#FFFFFF" />
               </linearGradient>
             </defs>
