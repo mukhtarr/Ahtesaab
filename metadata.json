@@ -1,0 +1,8 @@
+{
+  "name": "Noor Amaal",
+  "description": "Daily Islamic Routine Tracker, Prayer & Loud Azaan Reminders, Inbuilt Holy Quran with Urdu & English Translation, Muntakhab Ahaadees, and Morning & Evening Azkaar.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
