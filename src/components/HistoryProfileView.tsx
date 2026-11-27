@@ -31,7 +31,7 @@ import {
 } from '../utils/locationPrayerTimes';
 import { THEME_PALETTES, type ThemeColorId } from '../utils/themeColors';
 import { AndroidInstallButton } from './AndroidInstallButton';
-import { WeeklyTrendsChart } from './WeeklyTrendsChart';
+import { StatsVisualization } from './StatsVisualization';
 
 interface HistoryProfileViewProps {
   profile: UserProfile;
@@ -244,8 +244,8 @@ export function HistoryProfileView({
         </motion.div>
       </section>
 
-      {/* Weekly Recharts Consistency Line Chart */}
-      <WeeklyTrendsChart
+      {/* Weekly / Monthly Recharts Stats Visualization */}
+      <StatsVisualization
         history={history}
         quranGoalPages={profile.dailyQuranGoalPages}
       />
